@@ -13,7 +13,7 @@ import { BsMicrosoft } from "react-icons/bs";
 const Feature = () => {
     return (
         <div className='container m-auto'>
-            <div className='flex justify-around '>
+            <div className='flex flex-wrap justify-around '>
                 <div className='flex flex-col gap-3 '>
                     <h1 className='text-3xl font-semibold '>Fetured Job</h1>
                     <div className=''>

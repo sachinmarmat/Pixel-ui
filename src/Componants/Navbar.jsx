@@ -9,13 +9,13 @@ const Navbar = () => {
   return (
     <>
       <div className="container mx-auto relative z-10 text-white">
-        <div className="flex justify-around gap-44 items-center py-5">
+        <div className="flex justify-around gap-69 items-center py-5">
           <div>
             <img
               src={img}
               alt="logo"
               className="w-12 rounded-3xl cursor-pointer"
-            />
+            /> 
           </div>
 
           <div className="hidden md:block">
