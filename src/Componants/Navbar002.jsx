@@ -16,7 +16,7 @@ const Navbar002 = () => {
             <h1 className='text-7xl font-bold mb-5'>Find the <span className='bg-blue-400 rounded-4xl '>job</span> you love</h1>
             <p className='text-xl text-gray-300 ml-10'>Sreach Through Thousant of Jobs Opportunities</p>
           </div>
-          <div className='gap-5 mt-20 flex ml-15'>
+          <div className='gap-5 mt-20 flex flex-wrap ml-15'>
             <input type='text' placeholder='Job Title' className='border border-gray-400 p-3 rounded-2xl placeholder:text-gray-200 font-medium items-center pl-4 w-77' />
             <input type='text' placeholder='Location' className='border border-gray-400 p-3 rounded-2xl  placeholder:text-gray-200 font-medium items-center pl-4 w-50 ' />
             <button className='bg-blue-500 p-2 rounded hover:bg-blue-800 cursor-pointer font-medium pl-4 pr-4 transform transition-transform duration-200 hover:scale-110'>Find Job</button>

@@ -60,7 +60,7 @@ const About = () => {
                 </div>
 
             </div>
-            <div className='flex justify-items-center gap-22 mt-11'>
+            <div className='flex flex-wrap justify-items-center gap-22 mt-11'>
                 <div>
                     <h1 className='text-3xl font-semibold mb-8'>For job speakar</h1>
                     <div className='flex justify-between border border-gray-900 p-5 rounded-2xl items-center gap-49' >
