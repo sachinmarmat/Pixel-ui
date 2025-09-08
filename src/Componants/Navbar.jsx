@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import img from '../assets/img.jpg'
 import { NavLink } from 'react-router-dom'
-import { Menu, X } from 'lucide-react' // for hamburger & close icons
+import { Menu, X } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -9,8 +9,7 @@ const Navbar = () => {
   return (
     <>
       <div className="container mx-auto relative z-10 text-white">
-        <div className="flex justify-between items-center py-5">
-          {/* Logo */}
+        <div className="flex justify-around gap-44 items-center py-5">
           <div>
             <img
               src={img}
@@ -19,7 +18,6 @@ const Navbar = () => {
             />
           </div>
 
-          {/* Desktop Menu */}
           <div className="hidden md:block">
             <ul className="flex gap-9 bg-gray-100/20 p-2 rounded-2xl pl-8 pr-8 font-medium">
               <li className="hover:text-black cursor-pointer">
@@ -65,7 +63,6 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Buttons (Desktop) */}
           <div className="hidden md:flex gap-5">
             <button className="hover:bg-red-300 p-3 rounded-2xl text-white hover:text-black font-medium bg-gray-100/10">
               Log In
