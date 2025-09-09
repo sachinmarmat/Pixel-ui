@@ -27,7 +27,7 @@ const Login = () => {
                             <div className="flex flex-col lg:flex-row justify-center  items-center text-center">
                                 {/* Left Side */}
                                 <div className="flex flex-col items-start gap-8 lg:w-1/2">
-                                    <h1 className="text-3xl sm:text-5xl  font-bold text-white">
+                                    <h1 className="text-3xl p-2 sm:text-5xl  font-bold text-white">
                                         Welcome <span className="text-red-500">Back!</span>
                                     </h1>
                                     <img src={contectimg} alt="welcome" className="rounded-2xl max-w-xs sm:max-w-sm lg:max-w-md" />
