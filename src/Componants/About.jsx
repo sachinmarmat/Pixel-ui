@@ -1,85 +1,106 @@
-import React, { useEffect, useState } from 'react'
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import React, { useEffect, useState } from "react"
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 
 const slideindex = [
-    {
-        img: "https://img.freepik.com/premium-photo/3d-character-animation-icon-logo-cartoon-poses-with-human-body-background_762678-15079.jpg",
-        text: "This platform help me for dream job! The process was simple, and easy and stratforward",
-        name: "Surendra bairwa",
-    },
-    {
-        img: "https://tse2.mm.bing.net/th/id/OIP.BEE1wyUjPlj3sr1ny733OQAAAA?r=0&cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-        text: "This platform help me for dream job! The process was simple, and easy and stratforward",
-        name: "Sachin marmat",
-    }
+  {
+    img: "https://img.freepik.com/premium-photo/3d-character-animation-icon-logo-cartoon-poses-with-human-body-background_762678-15079.jpg",
+    text: "This platform helped me find my dream job! The process was simple, easy, and straightforward.",
+    name: "Surendra Bairwa",
+  },
+  {
+    img: "https://tse2.mm.bing.net/th/id/OIP.BEE1wyUjPlj3sr1ny733OQAAAA?pid=ImgDetMain",
+    text: "This platform guided me to my career goals! Very user-friendly and effective.",
+    name: "Sachin Marmat",
+  },
 ]
 
 const About = () => {
+  const [index, setIndex] = useState(0)
 
-    const [index, setindex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev === slideindex.length - 1 ? 0 : prev + 1))
+    }, 5000)
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setindex((prev) => (prev === slideindex.length - 1 ? 0 : prev + 1));
-        }, 5000);
+    return () => clearInterval(interval)
+  }, [])
 
-        return () => clearInterval(interval);
-    }, []);
+  const handlePrev = () => {
+    setIndex(index === 0 ? slideindex.length - 1 : index - 1)
+  }
+  const handleNext = () => {
+    setIndex(index === slideindex.length - 1 ? 0 : index + 1)
+  }
 
-    const handlepre = () => {
-        setindex(index === 0 ? slideindex.length - 1 : index - 1)
-    }
-    const handlenext = () => {
-        setindex(index === slideindex.length - 1 ? 0 : index + 1)
-    }
+  return (
+    <div className="container mx-auto px-4 py-12">
+      {/* Testimonials */}
+      <h1 className="text-2xl sm:text-3xl font-semibold mb-6">Testimonials</h1>
+      <div className="border bg-blue-400 p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
+        {/* Prev Button */}
+        <button
+          onClick={handlePrev}
+          className="cursor-pointer text-xl sm:text-2xl p-2 bg-white rounded-full shadow hover:bg-gray-200"
+        >
+          <IoIosArrowBack />
+        </button>
 
-
-    return (
-        <div className='container m-auto'>
-            <div>
-                <h1 className='text-3xl font-semibold mt-10 '>Testimonials</h1>
-                <div className='border  bg-blue-400 p-5 rounded-2xl mt-7 flex justify-between gap-15 items-center '>
-                    <div>
-                        <button onClick={handlepre} className='cursor-pointer'>
-                            <IoIosArrowBack />
-                        </button>
-                    </div>
-                    <div className='md:w-[85%] '>
-
-                        <div className='flex gap-5 items-center'>
-                            <img src={slideindex[index].img} alt='img' className='w-12 rounded-3xl' />
-                            <p className='w-140'>{slideindex[index].text}</p>
-                        </div>
-                        <div className='mt-3 font-medium'><h1>{slideindex[index].name}</h1></div>
-                    </div>
-                    <div className='cursor-pointer  right-3'>
-                        <button onClick={handlenext}>
-                            <IoIosArrowForward />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-            <div className='flex flex-wrap justify-items-center gap-22 mt-11'>
-                <div>
-                    <h1 className='text-3xl font-semibold mb-8'>For job speakar</h1>
-                    <div className='flex justify-between border border-gray-900 p-5 rounded-2xl items-center gap-49' >
-                        <button className='bg-red-500 text-white px-4 py-2 rounded cursor-pointer  hover:bg-red-800'>For A Task</button>
-
-                        <h1 className='font-medium text-xl'>Find Job</h1>
-                    </div>
-                </div>
-                <div>
-                    <h1 className='text-3xl font-semibold mb-8'>For Employers</h1>
-                    <div className='flex justify-between border border-gray-900 p-5 rounded-2xl gap-49 items-center' >
-                        <h1 className='font-medium text-xl'>For Employers</h1>
-                        <button className='bg-red-500 text-white px-4 py-2 rounded cursor-pointer  hover:bg-red-800'>For A Job</button>
-
-                    </div>
-                </div>
-            </div>
+        {/* Testimonial Content */}
+        <div className="flex-1 sm:w-[85%] text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <img
+              src={slideindex[index].img}
+              alt="testimonial"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover"
+            />
+            <p className="text-white text-sm sm:text-base md:text-lg max-w-xl">
+              {slideindex[index].text}
+            </p>
+          </div>
+          <h2 className="mt-3 font-medium text-lg sm:text-xl">
+            {slideindex[index].name}
+          </h2>
         </div>
-    )
+
+        {/* Next Button */}
+        <button
+          onClick={handleNext}
+          className="cursor-pointer text-xl sm:text-2xl p-2 bg-white rounded-full shadow hover:bg-gray-200"
+        >
+          <IoIosArrowForward />
+        </button>
+      </div>
+
+      {/* Job Seeker / Employer Section */}
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Job Seeker */}
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-semibold mb-6">
+            For Job Seekers
+          </h1>
+          <div className="flex flex-col sm:flex-row justify-between border border-gray-900 p-5 rounded-2xl items-center gap-6">
+            <button className="bg-red-500 text-white px-5 py-2 rounded hover:bg-red-700 transition w-full sm:w-auto cursor-pointer">
+              For A Task
+            </button>
+            <h1 className="font-medium text-lg sm:text-xl">Find Job</h1>
+          </div>
+        </div>
+
+        {/* Employers */}
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-semibold mb-6">
+            For Employers
+          </h1>
+          <div className="flex flex-col sm:flex-row justify-between border border-gray-900 p-5 rounded-2xl items-center gap-6">
+            <h1 className="font-medium text-lg sm:text-xl">For Employers</h1>
+            <button className="bg-red-500 text-white px-5 py-2 rounded hover:bg-red-700 transition w-full sm:w-auto cursor-pointer">
+              For A Job
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default About

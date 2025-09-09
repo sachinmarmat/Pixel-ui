@@ -8,11 +8,10 @@ import Navbar002 from './Navbar002'
 const Home = () => {
     return (
         <div>
-            <Navbar />
+        
             <Navbar002 />
             <Feature />
             <About />
-            <Footer />
         </div>
     )
 }

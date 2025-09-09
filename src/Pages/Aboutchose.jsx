@@ -7,7 +7,7 @@ import { FaBuilding } from "react-icons/fa";
 
 const Aboutchose = () => {
     return (
-        <div className='container m-auto flex justify-around mt-10'>
+        <div className='container m-auto flex flex-wrap justify-around mt-10'>
             <div className='flex flex-col gap-4 '>
                 <h1 className='text-4xl font-bold '>Why choose Us</h1>
                 <div className='flex text-2xl font-medium text-gray-500 items-center gap-2'><GiConfirmed className='text-orange-700' /><p>Wide network of Employers</p></div>
