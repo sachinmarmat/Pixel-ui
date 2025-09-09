@@ -9,10 +9,10 @@ const Contact = () => {
     const center = { lat: 26.64859, lng: 74.03414 };
 
     return (
-        <div className="relative z-20 bg-gradient-to-t from-[#CAEFEF] to-[#389DDA] min-h-[97vh] w-full">
-            <div className="container m-auto pt-20 sm:pt-40 flex flex-col gap-10 px-4">
+        <div className="relative z-20 bg-gradient-to-t from-[#CAEFEF] to-[#389DDA] min-h-[99vh] w-full">
+            <div className="container m-auto pt-20 sm:pt-35 flex flex-col gap-10 px-4">
                 {/* Heading */}
-                <div>
+                <div className='pt-7'>
                     <h1 className="text-3xl sm:text-5xl font-bold">Contact Us</h1>
                     <p className="text-lg sm:text-xl text-gray-600 mt-3">
                         We&apos;d love to hear from you. Get in touch today
@@ -22,7 +22,7 @@ const Contact = () => {
                 {/* Contact Section */}
                 <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 w-full justify-between">
                     {/* Contact Form */}
-                    <form className="flex flex-col gap-5 bg-white p-6 sm:p-10 rounded-2xl w-full lg:w-[45%] text-gray-600 shadow-lg">
+                    <form className="flex flex-col gap-5 bg-white p-6 sm:p-10  rounded-2xl w-full lg:w-[45%] text-gray-600 shadow-lg">
                         <input
                             type="text"
                             placeholder="Name"
@@ -60,7 +60,7 @@ const Contact = () => {
                         </div>
 
                         {/* Google Map */}
-                        <div className="w-full rounded-2xl overflow-hidden">
+                        <div className="w-full rounded-2xl overflow-hidden pb-5">
                             <LoadScript googleMapsApiKey="YOUR_API_KEY">
                                 <GoogleMap
                                     mapContainerStyle={containerStyle}
