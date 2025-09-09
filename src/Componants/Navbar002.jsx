@@ -4,7 +4,7 @@ import bgimg from '../assets/bg-img.jpg'
 const Navbar002 = () => {
   return (
     <div>
-      <div className="min-h-[44rem] relative">
+      <div className=" min-h-[33rem] sm:min-h-[44rem] relative">
         {/* Background Image */}
         <div
           className="absolute inset-0 h-full w-full bg-cover bg-center"
