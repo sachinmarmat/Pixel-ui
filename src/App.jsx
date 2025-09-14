@@ -8,19 +8,31 @@ import Companies from './Pages/Companies'
 import Contact from './Pages/Contact'
 import Footer from './Componants/Footer'
 import Login from './Pages/Login'
+import Dashboard from './Dashbord/Dashboard'
+import Dashbordnav from './Dashbord/Dashbordnav'
+import Profile from './Dashbord/DesComponant/Profile'
+import Application from './Dashbord/DesComponant/Application'
+import Savedjobs from './Dashbord/DesComponant/savedjobs'
+import Satting from './Dashbord/DesComponant/Satting'
+import Resumebuilder from './Dashbord/DesComponant/resumebuilder'
+import Carrerresources from './Dashbord/DesComponant/Career'
+import Jobs from './Dashbord/DesComponant/Jobs'
+import Dask from './Dashbord/DesComponant/Dask'
 
 function App() {
 
   const location = useLocation();
 
-  const hideNavbarFooter = ["/Login"];
+  const hideNavbarFooter = ["/Login", "/Dashboard", "/Logout"];
   const shouldHide = hideNavbarFooter.includes(location.pathname);
-
+  const deshpage = location.pathname.startsWith("/Dashboard")
 
 
   return (
     <>
-      {!shouldHide && <Navbar />}
+
+      {!shouldHide && !deshpage && <Navbar />}
+      {deshpage && <Dashbordnav />}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -29,6 +41,17 @@ function App() {
         <Route path='/Contact' element={<Contact />} />
         <Route path='/Companies' element={<Companies />} />
         <Route path='/Login' element={<Login />} />
+        <Route path="/Dashboard" element={<Dashboard />}>
+
+          <Route index element={<Dask />} />
+          <Route path="Profile" element={<Profile />} />
+          <Route path="Jobs" element={<Jobs />} />
+          <Route path="Application" element={<Application />} />
+          <Route path="Savedjobs" element={<Savedjobs />} />
+          <Route path="Carrerresources" element={<Carrerresources />} />
+          <Route path="Satting" element={<Satting />} />
+          <Route path="Resumebuilder" element={<Resumebuilder />} />
+        </Route>
       </Routes>
 
       {!shouldHide && <Footer />}

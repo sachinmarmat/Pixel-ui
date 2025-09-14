@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import img from '../assets/img.jpg'
+import logo from '../assets/logo.png'
 import { NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
@@ -19,14 +19,14 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-10">
           <div>
           <a href='/'><img
-              src={img}
+              src={logo}
               alt="logo"
-              className="w-12 rounded-full cursor-pointer"
+              className="w-12 sm:w-17 rounded-full cursor-pointer"
             /></a>  
-          </div>
+          </div> 
 
           <div className="hidden lg:block">
-            <ul className="flex gap-8 bg-gray-100/20 px-6 py-2 rounded-2xl font-medium text-white">
+            <ul className="flex gap-13 bg-gray-100/20 px-7 py-2 rounded-2xl font-medium text-white">
               {navLinks.map(({ path, label }) => (
                 <li key={path} className="hover:text-black transition">
                   <NavLink
@@ -43,10 +43,10 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex gap-4">
-            <button className="hover:bg-red-300 px-5 py-2 rounded-2xl text-white hover:text-black font-medium bg-gray-100/10 transition cursor-pointer">
+            <button className="hover:bg-orange-600 px-5 py-2 rounded-2xl text-white hover:text-black font-medium bg-gray-100/10 transition cursor-pointer">
               <a href='/Login'> Log In</a>
             </button>
-            <button className="bg-blue-700 px-5 py-2 rounded-2xl hover:bg-blue-900 text-white font-medium transition cursor-pointer">
+            <button className="bg-blue-600 px-5 py-2 rounded-2xl hover:bg-blue-700 text-white font-medium transition cursor-pointer">
               Sign Up
             </button>
           </div>
@@ -83,7 +83,7 @@ const Navbar = () => {
               <button className="hover:bg-red-300 px-5 py-3 rounded-2xl text-white hover:text-black font-medium bg-gray-100/10 transition">
               <a href='/Login'> Log In</a>
               </button>
-              <button className="bg-blue-700 px-5 py-3 rounded-2xl hover:bg-blue-900 text-white font-medium transition">
+              <button className="bg-blue-600 px-5 py-3 rounded-2xl hover:bg-blue-700 text-white font-medium transition">
                 Sign Up
               </button>
             </div>

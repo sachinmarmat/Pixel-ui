@@ -5,8 +5,6 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { TfiEmail } from "react-icons/tfi";
 
 const Contact = () => {
-    const containerStyle = { width: "100%", height: "260px" };
-    const center = { lat: 26.64859, lng: 74.03414 };
 
     return (
         <div className="relative z-20 bg-gradient-to-t from-[#CAEFEF] to-[#389DDA] min-h-[99vh] w-full">
@@ -60,16 +58,17 @@ const Contact = () => {
                         </div>
 
                         {/* Google Map */}
-                        <div className="w-full rounded-2xl overflow-hidden pb-5">
-                            <LoadScript googleMapsApiKey="YOUR_API_KEY">
-                                <GoogleMap
-                                    mapContainerStyle={containerStyle}
-                                    center={center}
-                                    zoom={12}
-                                >
-                                    <Marker position={center} />
-                                </GoogleMap>
-                            </LoadScript>
+                        <div className="w-full rounded-2xl "> 
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.433839812462!2d75.75693107542894!3d26.88972321107823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db4f57f20e9d1%3A0xb0f74eb4950ed848!2sLaxman%20Colony%2C%20Shyam%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302019!5e0!3m2!1sen!2sin!4v1757587874626!5m2!1sen!2sin"
+                                width={600}
+                                height={300}
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            />
+
                         </div>
                     </div>
                 </div>
