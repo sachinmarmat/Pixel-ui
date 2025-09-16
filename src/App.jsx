@@ -17,7 +17,7 @@ import Satting from './Dashbord/DesComponant/Satting'
 import Resumebuilder from './Dashbord/DesComponant/Resumebuilder'
 import Carrerresources from './Dashbord/DesComponant/Career'
 import Jobs from './Dashbord/DesComponant/Jobs'
-import Dask from './Dashbord/DesComponant/Dask'
+import Dask from './Dashbord/DesComponant/Dask' 
 
 function App() {
 
