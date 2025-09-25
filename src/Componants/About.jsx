@@ -70,7 +70,7 @@ const About = () => {
 
 
   return (
-    <div className="container mx-auto px-4 sm:px-22 py-2 md:py-6">
+    <div className="px-4 sm:px-22 py-2 md:py-6">
       {/* Testimonials */}
       <h1 className="text-2xl sm:text-3xl font-semibold mb-6">Testimonials</h1>
       <div className="border bg-blue-400 sm:p-6 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 max-w-[100%]">

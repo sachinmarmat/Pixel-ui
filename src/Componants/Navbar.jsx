@@ -14,8 +14,8 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="w-full absolute  top-0 left-0 bg-transparent z-50">
-      <div className="container mx-auto px-4 md:px-8">
+    <nav className="w-full absolute sm:px-15 top-0 left-0 bg-transparent z-50">
+      <div className=" px-4 md:px-8">
         <div className="flex justify-between items-center py-10">
           <div>
             <a href='/'><img

@@ -52,7 +52,7 @@ const Feature = () => {
   
 
   return (
-    <div className="container mx-auto px-4 sm:px-18 py-12">
+    <div className="px-4 sm:px-20 py-12">
       <div className="flex flex-col lg:flex-row gap-10 justify-between sm:items-center">
         <div className="flex flex-col gap-6 flex-1 ">
           <h1 className="text-2xl sm:text-3xl font-semibold">Featured Jobs</h1>

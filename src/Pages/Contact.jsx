@@ -8,7 +8,7 @@ const Contact = () => {
 
     return (
         <div className="relative z-20  bg-gradient-to-t from-[#CAEFEF] to-[#389DDA] min-h-[99vh] w-full">
-            <div className="container sm:px-28 m-auto pt-20 sm:pt-35 flex flex-col gap-8 px-4">
+            <div className=" sm:px-32 m-auto pt-20 sm:pt-35 flex flex-col gap-8 px-4">
                 {/* Heading */}
                 <div className='pt-9 sm:pt-11'>
                     <h1 className="text-3xl sm:text-5xl font-bold">Contact Us</h1>

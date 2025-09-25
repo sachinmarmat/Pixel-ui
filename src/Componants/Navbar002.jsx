@@ -63,7 +63,7 @@ const Navbar002 = () => {
         ></div>
 
         {/* Content */}
-        <div className="relative  z-10 container mx-auto max-w-screen-xl px-6 pt-44 sm:pt-68 sm:pl-40 items-center sm:items-start text-center sm:text-left lg:pt-65">
+        <div className="relative  z-10  max-w-screen-xl px-6 pt-44 sm:pt-68 sm:pl-40 items-center sm:items-start text-center sm:text-left lg:pt-65">
           {/* Heading */}
           <div className="flex flex-col  ">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-white">

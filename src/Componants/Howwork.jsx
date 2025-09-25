@@ -5,6 +5,7 @@ import { PiHandshakeFill } from "react-icons/pi";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
+
 const Howwork = () => {
   const steps = [
     {
@@ -14,7 +15,7 @@ const Howwork = () => {
     },
     { icon: <FaArrowRightLong className="text-4xl text-gray-500" /> },
     {
-      icon: <MdEditDocument className="text-6xl text-blue-600 hover:text-red-600 hover:scale-110" />,
+      icon: <MdEditDocument className="text-6xl text-blue-600 hover:text-red-600  hover:scale-110" />,
       title: "Apply",
       title2: "(Step-2)",
     },
@@ -41,7 +42,7 @@ const Howwork = () => {
   };
 
   return (
-    <div className="sm:px-25">
+    <div className="sm:px-20">
       <div className="mt-15 bg-gray-100 shadow-xm hover:shadow p-5 rounded-2xl">
         <h1 className="text-2xl sm:text-3xl font-semibold mb-11 sm:mb-7 hover:underline">
           How it Works
