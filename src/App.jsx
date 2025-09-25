@@ -17,21 +17,34 @@ import Satting from './Dashbord/DesComponant/Satting'
 import Resumebuilder from './Dashbord/DesComponant/Resumebuilder'
 import Carrerresources from './Dashbord/DesComponant/Career'
 import Jobs from './Dashbord/DesComponant/Jobs'
-import Dask from './Dashbord/DesComponant/Dask' 
+import Dask from './Dashbord/DesComponant/Dask'
+import { Changepassword } from './Componants/Changepassword'
+import Deleteacc from './Componants/Deleteacc'
+import Signup from './Pages/Signup'
+import GetAheadWithPixel from './Componants/Logout'
+
+import Employedashboard from './Employer-Dashboard/Employedashboard'
+import Postjobs from './Employer-Dashboard/Employerdas/Postjobs'
+import Applica from './Employer-Dashboard/Employerdas/Application'
+import Profiled from './Employer-Dashboard/Employerdas/Profile'
+import Logout from './Employer-Dashboard/Employerdas/Logout'
+import Managejobs from './Employer-Dashboard/Employerdas/ManageJobs'
+import Settings from './Employer-Dashboard/Employerdas/Settings'
 
 function App() {
 
   const location = useLocation();
 
-  const hideNavbarFooter = ["/Login", "/Dashboard", "/Logout"];
+  const hideNavbarFooter = ["/Login", "/Dashboard", "/Logout", "/Signup", ];
   const shouldHide = hideNavbarFooter.includes(location.pathname);
   const deshpage = location.pathname.startsWith("/Dashboard")
+  const employnavhide = location.pathname.startsWith("/Employedashboard")
 
 
   return (
     <>
 
-      {!shouldHide && !deshpage && <Navbar />}
+      {!shouldHide && !deshpage && !employnavhide && <Navbar />}
       {deshpage && <Dashbordnav />}
 
       <Routes>
@@ -41,6 +54,7 @@ function App() {
         <Route path='/Contact' element={<Contact />} />
         <Route path='/Companies' element={<Companies />} />
         <Route path='/Login' element={<Login />} />
+        <Route path='/Signup' element={<Signup />} />
         <Route path="/Dashboard" element={<Dashboard />}>
 
           <Route index element={<Dask />} />
@@ -49,12 +63,25 @@ function App() {
           <Route path="Application" element={<Application />} />
           <Route path="Savedjobs" element={<Savedjobs />} />
           <Route path="Carrerresources" element={<Carrerresources />} />
-          <Route path="Satting" element={<Satting />} />
           <Route path="Resumebuilder" element={<Resumebuilder />} />
+          <Route path="Satting" element={<Satting />} />
+          <Route path="Changepassword" element={<Changepassword />} />
+          <Route path="Deleteacc" element={<Deleteacc />} />
+          <Route path="GetAheadWithPixel" element={<GetAheadWithPixel />} />
+        </Route>
+
+        <Route path="/Employedashboard" element={<Employedashboard />}>
+          <Route index element={<Postjobs/>} />
+          <Route path="Managejobs" element={<Managejobs/>} />
+          <Route path="Application" element={<Applica/>} />
+          <Route path="Profile" element={<Profiled/>} />
+          <Route path="Settings" element={<Settings/>} />
+          <Route path="Logout" element={<Logout/>} />
+
         </Route>
       </Routes>
 
-      {!shouldHide && <Footer />}
+      {!shouldHide && <Footer />} 
     </>
   )
 }

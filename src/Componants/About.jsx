@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa6";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import GetAheadWithPixel from "./Logout";
 
 
 const slideindex = [
@@ -17,8 +19,8 @@ const slideindex = [
 ];
 
 const About = () => {
-  const [index, setIndex] = useState(0); 
- 
+  const [index, setIndex] = useState(0);
+
   // Auto Slide
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,60 +37,40 @@ const About = () => {
   };
 
 
+  const jobTitles = [
+    "Web Development",
+    "Product Manager",
+    "Graphic Degine",
+    "UX Designer",
+    "Marketing Manager",
+    "HR Specialist",
+  ];
 
-  // const [steps, setSteps] = useState(["for Apply ", "For topic", "in expert"]); // 3 filters
-  // const [openDropdown, setOpenDropdown] = useState();
+  const jobLocations = [
+    "Full Stack",
+    "Frontand",
+    "Backend",
+    "Designer",
+    "Manegment",
+    "HR",
+  ];
 
-  // // Step 1 options (only two)
-  // const firstOptions = ["For Job Seekers", "For Job Employers"];
+  const [titleOpen, setTitleOpen] = useState(false);
+  const [locationOpen, setLocationOpen] = useState(false);
 
-  // // Step 2 options based on Step 1
-  // const secondOptions = {
-  //   "For Job Seekers": ["webDeginer", "Frontend", "Intern"],
-  //   "For Job Employers": ["Backend", "Frontend", "Fullstack"],
-  // };
+  const [titleFilter, setTitleFilter] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
 
-  // // Step 3 options (final filter)
-  // const thirdOptions = {
-  //   Frontend: ["React", "Angular", "Vue"],
-  //   Backend: ["Node.js", "Django", "Spring Boot"],
-  //   Fullstack: ["MERN", "MEAN", "LAMP"],
-  //   Intern: ["frashar", "some experiouns"],
-  //   webDeginer: ["Figma", "Animation"]
-  // };
+  const filteredTitles = jobTitles.filter((t) =>
+    t.toLowerCase().includes(titleFilter.toLowerCase())
+  );
+  const filteredLocations = jobLocations.filter((l) =>
+    l.toLowerCase().includes(locationFilter.toLowerCase())
+  );
 
-  // const handleSelect = (index, value) => {
-  //   const newSteps = [...steps];
-  //   newSteps[index] = value;
-
-  //   // Reset next steps if parent changes
-  //   if (index === 0) {
-  //     newSteps[1] = "";
-  //     newSteps[2] = "";
-  //   } else if (index === 1) {
-  //     newSteps[2] = "";
-  //   }
-
-  //   setSteps(newSteps);
-  //   setOpenDropdown();
-  // };
-
-  // const handleSubmit = () => {
-  //   alert("Selected filters: " + steps.filter(Boolean).join(" → "));
-  // };
-
-  // // Dynamically set options
-  // const getOptions = (index) => {
-  //   if (index === 0) return firstOptions;
-  //   if (index === 1) return secondOptions[steps[0]] || [];
-  //   if (index === 2) return thirdOptions[steps[1]] || [];
-  //   return [];
-  // };
-
-  const [activeSection, setActiveSection] = useState("");
 
   return (
-    <div className="container mx-auto px-4 py-2 md:py-6">
+    <div className="container mx-auto px-4 sm:px-22 py-2 md:py-6">
       {/* Testimonials */}
       <h1 className="text-2xl sm:text-3xl font-semibold mb-6">Testimonials</h1>
       <div className="border bg-blue-400 sm:p-6 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 max-w-[100%]">
@@ -121,98 +103,111 @@ const About = () => {
         >
           <IoIosArrowForward />
         </button>
-      </div> 
+      </div>
 
-      {/* <div className="p-6 flex flex-col gap-6 items-start">
-        {steps.map((step, index) => (
-          <div key={index} className="relative">
+      <section className="w-full flex flex-col items-center py-22 px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-indigo-900 mb-8">
+          Get ahead with Pixel
+        </h2>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16">
+          {/* ===== Popular Job Titles ===== */}
+          <div className="relative w-full sm:w-64">
             <button
-              disabled={index > 0 && !steps[index - 1]}
-              onClick={() =>
-                setOpenDropdown(openDropdown === index ? null : index)
-              }
-              className={`px-4 py-2 border rounded-lg shadow w-56 text-left ${index > 0 && !steps[index - 1]
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-white hover:bg-gray-100"
-                }`}
+              onClick={() => {
+                setTitleOpen(!titleOpen);
+                setLocationOpen(false);
+              }}
+              className="w-full flex justify-between items-center px-4 py-3
+                       bg-white rounded-lg shadow hover:shadow-md
+                       border border-gray-200 text-gray-700 font-medium
+                       transition"
             >
-              {step || ` ${index + 1}`}
+              For Job Seeker
+              <MdKeyboardArrowDown
+                className={`text-xl transform transition-transform duration-200
+                          ${titleOpen ? "rotate-180" : ""}`}
+              />
             </button>
 
-            {openDropdown === index && (
-              <div className="absolute mt-2 bg-white border rounded-lg shadow w-56 z-10">
-                {getOptions(index).map((opt) => (
-                  <div
-                    key={opt}
-                    onClick={() => handleSelect(index, opt)}
-                    className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
-                  >
-                    {opt}
-                  </div>
-                ))}
+            {titleOpen && (
+              <div className="absolute z-20 w-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200">
+                <input
+                  type="text"
+                  placeholder="Filter titles..."
+                  value={titleFilter}
+                  onChange={(e) => setTitleFilter(e.target.value)}
+                  className="w-full px-3 py-2 border-b text-sm focus:outline-none"
+                />
+                <ul className="max-h-48 overflow-y-auto">
+                  {filteredTitles.map((title) => (
+                    <li
+                      key={title}
+                      className="px-4 py-2 hover:bg-indigo-50 cursor-pointer text-gray-700"
+                    >
+                      {title}
+                    </li>
+                  ))}
+                  {filteredTitles.length === 0 && (
+                    <li className="px-4 py-2 text-gray-400 text-sm">No results</li>
+                  )}
+                </ul>
               </div>
             )}
           </div>
-        ))}
 
-        {steps.every((s) => s !== "") && (
-          <button
-            onClick={handleSubmit}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
-          >
-            Submit
-          </button>
-        )}
-      </div> */}
+          {/* Divider for large screen */}
+          <div className="hidden sm:block w-px h-12 bg-gray-300"></div>
 
-      <div className="my-15">
-        <div className="items-start flex flex-col gap-5 ">
-          {/* First button */}
-          <div className=""> <button
-            className="bg-orange-600 p-3 text-2xl font-semibold rounded px-7 cursor-pointer hover:bg-orange-700"
-            onClick={() => setActiveSection("first")}
-          >
-            For Job Seeker
-          </button>
-            <div className="mt-3">
-              {activeSection === "first" && (
-                <div className="items-center flex flex-col gap-2 ">
+          {/* ===== Popular Job Locations ===== */}
+          <div className="relative w-full sm:w-64">
+            <button
+              onClick={() => {
+                setLocationOpen(!locationOpen);
+                setTitleOpen(false);
+              }}
+              className="w-full flex justify-between items-center px-4 py-3
+                       bg-white rounded-lg shadow hover:shadow-md
+                       border border-gray-200 text-gray-700 font-medium
+                       transition"
+            >
+              For Employers
+              <MdKeyboardArrowDown
+                className={`text-xl transform transition-transform duration-200
+                          ${locationOpen ? "rotate-180" : ""}`}
+              />
+            </button>
 
-                  <FaChevronDown className="items-center" />
-                  <div className="p-4 rounded-xl bg-blue-50 shadow">
-                    <div className="flex gap-5 text-xl font-medium"> <button className=" bg-orange-500 p-3 px-4 rounded cursor-pointer hover:bg-orange-600">
-                      For a Task</button>
-                      <button className=" bg-orange-500 p-2 px-4 rounded cursor-pointer hover:bg-orange-600"
-                      >Find job</button></div>
-                  </div></div>
-              )}
-            </div></div>
-          {/* Second button */}
-          <div className=""> <button
-            className="bg-orange-600 p-3 text-2xl font-semibold rounded px-8 cursor-pointer hover:bg-orange-700"
-            onClick={() => setActiveSection("second")}
-          >
-            For Employer
-          </button>
-          </div>
-
-          {/* Show content based on activeSection */}
-          <div className="mt-">
-
-
-            {activeSection === "second" && (
-                <div className="items-center flex flex-col gap-2 ">
-
-                  <FaChevronDown className="" />
-              <div className="p-6  rounded-xl bg-green-50 shadow">
-                  <div className="flex gap-5 text-xl font-medium"> <button className=" bg-orange-500 p-3 px-4 rounded cursor-pointer hover:bg-orange-600">For a Task</button>
-                    <button className=" bg-orange-500 p-2 px-4 rounded cursor-pointer hover:bg-orange-600">Find job</button></div>
-                </div></div>
+            {locationOpen && (
+              <div className="absolute z-20 w-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200">
+                <input
+                  type="text"
+                  placeholder="Filter locations..."
+                  value={locationFilter}
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                  className="w-full px-3 py-2 border-b text-sm focus:outline-none"
+                />
+                <ul className="max-h-48 overflow-y-auto">
+                  {filteredLocations.map((loc) => (
+                    <li
+                      key={loc}
+                      className="px-4 py-2 hover:bg-indigo-50 cursor-pointer text-gray-700"
+                    >
+                      {loc}
+                    </li>
+                  ))}
+                  {filteredLocations.length === 0 && (
+                    <li className="px-4 py-2 text-gray-400 text-sm">No results</li>
+                  )}
+                </ul>
+              </div>
             )}
-          </div></div>
-      </div>
+          </div>
+        </div> 
+      </section>
 
 
+      {/* <GetAheadWithPixel /> */}
 
     </div>
   );

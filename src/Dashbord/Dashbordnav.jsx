@@ -20,12 +20,12 @@ const Dashbordnav = () => {
   ]
 
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 py-2 sm:py-4 bg-gradient-to-r from-blue-600 to-[#76e5ef]">
+    <nav className="w-full fixed top-0 sm:px-15 left-0 z-50 py-2 sm:py-4 bg-gradient-to-r from-blue-600 to-[#76e5ef]">
       <div className="container mx-auto flex justify-between items-center px-4 py-4">
 
         {/* ---- Logo ---- */}
         <a href="/">
-          <img
+          <img 
             src={logo}
             alt="logo"
             className="w-11 sm:w-14 rounded-full cursor-pointer "
@@ -57,7 +57,7 @@ const Dashbordnav = () => {
               placeholder="Search job here"
               className="w-65 text-xm  border outline-none border-gray-400 pl-4 pr-10 py-2 rounded-3xl bg-white"
             />
-            <BiSearch className="absolute top-1/2 right-1 -translate-y-1/2 text-3xl bg-blue-500 rounded-full p-1 text-white cursor-pointer hover:bg-blue-600" />
+            <BiSearch className="absolute top-1 right-1 -translate-y-1 text-3xl bg-blue-500 rounded-full p-1 text-white cursor-pointer hover:bg-blue-600" />
           </div>
 
           {/* Search icon on mobile */}

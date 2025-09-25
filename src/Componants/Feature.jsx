@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import img from '../assets/img.jpg'
-import { BsFilePerson } from "react-icons/bs"
-import { MdEditDocument } from "react-icons/md"
-import { PiHandshakeFill } from "react-icons/pi"
-import { motion } from "framer-motion"
+import React, { useEffect, useState } from "react";
+import img from "../assets/img.jpg";
 
 
 const Feature = () => {
-
   const [index, setIndex] = useState(0);
 
 
   const logos = [
-    'https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo-2014-present.jpg',
-    'https://tse2.mm.bing.net/th/id/OIP.96OxWjEy7in-wy0k-f12ZgHaEK?r=0&pid=ImgDetMain',
-    'https://www.logo-designer.co/wp-content/uploads/2015/10/Apple-Google-Interbrand-6th-annual-Best-Global-Brands-report.png',
-    'https://static.vecteezy.com/system/resources/previews/014/018/578/non_2x/microsoft-logo-on-transparent-background-free-vector.jpg',
-    'https://th.bing.com/th/id/R.e479c6b4c67f974f7ceb4605f17332d9?rik=RGN0%2biDVLnpAXw&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2016%2f05%2fAmazon-logo.png&ehk=xF4jh7u2oTUutljz77AHIyPxQVM26QYgt7y0za9cQTs%3d&risl=&pid=ImgRaw&r=0',
-    'https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png',
-    'https://logos-world.net/wp-content/uploads/2020/11/Shopify-Symbol.png',
-    'https://tse3.mm.bing.net/th/id/OIP.cMhtTaiB-Dck7s34XHVMhwHaHa?r=0&cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3',
-  ]
+    "https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo-2014-present.jpg",
+    "https://tse2.mm.bing.net/th/id/OIP.96OxWjEy7in-wy0k-f12ZgHaEK?r=0&pid=ImgDetMain",
+    "https://www.logo-designer.co/wp-content/uploads/2015/10/Apple-Google-Interbrand-6th-annual-Best-Global-Brands-report.png",
+    "https://static.vecteezy.com/system/resources/previews/014/018/578/non_2x/microsoft-logo-on-transparent-background-free-vector.jpg",
+    "https://th.bing.com/th/id/R.e479c6b4c67f974f7ceb4605f17332d9?rik=RGN0%2biDVLnpAXw&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2016%2f05%2fAmazon-logo.png&ehk=xF4jh7u2oTUutljz77AHIyPxQVM26QYgt7y0za9cQTs%3d&risl=&pid=ImgRaw&r=0",
+    "https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png",
+    "https://logos-world.net/wp-content/uploads/2020/11/Shopify-Symbol.png",
+    "https://tse3.mm.bing.net/th/id/OIP.cMhtTaiB-Dck7s34XHVMhwHaHa?r=0&cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
+  ];
 
   // Auto slide every 3s
   useEffect(() => {
@@ -54,28 +49,11 @@ const Feature = () => {
       salary: "30k–40k / Monthly",
     },
   ];
-
-
-
-  const stepVariant = {
-    hidden: { opacity: 0, y: 10 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 1, duration: 1 } // each appears after 2 sec
-    })
-  }
-
-  const steps = [
-    { icon: <BsFilePerson />, title: "Register" },
-    { icon: <MdEditDocument />, title: "Apply" },
-    { icon: <PiHandshakeFill />, title: "Get Hired" },
-  ]
+  
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 sm:px-18 py-12">
       <div className="flex flex-col lg:flex-row gap-10 justify-between sm:items-center">
-
         <div className="flex flex-col gap-6 flex-1 ">
           <h1 className="text-2xl sm:text-3xl font-semibold">Featured Jobs</h1>
 
@@ -95,7 +73,7 @@ const Feature = () => {
 
               {/* Right Side */}
               <div className="flex flex-col md:items-end gap-4">
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition cursor-pointer">
+                <button className="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 transition cursor-pointer">
                   Apply Now
                 </button>
                 <h2 className="font-semibold">{job.salary}</h2>
@@ -105,8 +83,8 @@ const Feature = () => {
         </div>
 
         <div className="flex-1 items-center ">
-          <h1 className="text-2xl sm:text-3xl font-semibold text-center">Top Companies</h1>
-          <div className="mt-6 border rounded-lg border-gray-400 py-8 sm:py-20 overflow-hidden">
+          <h1 className="text-2xl sm:text-3xl font-semibold ">Top Companies</h1>
+          <div className="mt-6 border  rounded-lg border-gray-300 py-8  sm:py-22 overflow-hidden">
             <style>{`
         @keyframes slide {
           0% { transform: translateX(0%); }
@@ -116,10 +94,10 @@ const Feature = () => {
         .animate-slide {
           display: flex;
           width: max-content;
-          animation: slide 20s linear infinite;
+          animation: slide 10s linear infinite;
         }
       `}</style>
-            <div className="flex flex-wrap gap-7 sm:pb-1 justify-center">
+            <div className="flex  ml-2  gap-7 sm:pb-1 justify-center">
               {visible.map((logo, i) => (
                 <img
                   key={`${index}-${i}`}
@@ -134,34 +112,11 @@ const Feature = () => {
               ))}
             </div>
           </div>
-
-        </div>
-
-      </div>
-      <div className="mt-12">
-        <h1 className="text-2xl sm:text-3xl font-semibold mb-7">
-          How it Works
-        </h1>
-        <div className="flex flex-col sm:flex-row gap-10 sm:gap-16 items-center justify-center">
-          {steps.map((step, i) => (
-            <motion.div
-              key={i}
-              custom={i}
-              variants={stepVariant}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col gap-4 items-center text-center"
-            >
-              <div className="text-5xl sm:text-7xl text-blue-500 hover:text-blue-800 transition transform hover:scale-110">
-                {step.icon}
-              </div>
-              <h1 className="font-medium text-xl sm:text-2xl">{step.title}</h1>
-            </motion.div>
-          ))}
         </div>
       </div>
+  
     </div>
-  )
-}
+  );
+};
 
-export default Feature
+export default Feature;

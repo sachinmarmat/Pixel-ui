@@ -10,9 +10,9 @@ export default function Footer() {
         <div>
           <h2 className="font-semibold text-lg mb-3">Links</h2>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">Jobs</a></li>
-            <li><a href="#" className="hover:underline">Companies</a></li>
-            <li><a href="#" className="hover:underline">About</a></li>
+            <li><a href="/" className="hover:underline">Jobs</a></li>
+            <li><a href="/Companies" className="hover:underline">Companies</a></li>
+            <li><a href="/Aboutus" className="hover:underline">About</a></li>
           </ul>
         </div>
 
