@@ -28,7 +28,7 @@ import Postjobs from './Employer-Dashboard/Employerdas/Postjobs'
 import Applica from './Employer-Dashboard/Employerdas/Application'
 import Profiled from './Employer-Dashboard/Employerdas/Profile'
 import Logout from './Employer-Dashboard/Employerdas/Logout'
-import Managejobs from './Employer-Dashboard/Employerdas/ManageJobs'
+import Managejobs from './Employer-Dashboard/Employerdas/Managejobs'
 import Settings from './Employer-Dashboard/Employerdas/Settings'
 
 function App() {
