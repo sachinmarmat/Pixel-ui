@@ -13,13 +13,13 @@ const Howwork = () => {
       title: "Register",
       title2: "(Step-1)",
     },
-    { icon: <FaArrowRightLong className="text-4xl text-gray-500" /> },
+    { icon: <FaArrowRightLong className="text-4xl rotate-90 sm:rotate-0 text-gray-500" /> },
     {
       icon: <MdEditDocument className="text-6xl text-blue-600 hover:text-red-600  hover:scale-110" />,
       title: "Apply",
       title2: "(Step-2)",
     },
-    { icon: <FaArrowRightLong className="text-4xl text-gray-500" /> },
+    { icon: <FaArrowRightLong className="text-4xl rotate-90 sm:rotate-0 text-gray-500" /> },
     {
       icon: <PiHandshakeFill className="text-6xl text-blue-600" />,
       title: "Get Hired",
@@ -48,7 +48,7 @@ const Howwork = () => {
           How it Works
         </h1>
 
-        <div className="flex sm:flex-row gap-11 sm:gap-14 items-center justify-center sm:pr-22">
+        <div className="flex flex-col sm:flex-row  gap-5 sm:gap-14 items-center justify-center sm:pr-22">
           {steps.map((step, i) => (
             <motion.div
               key={i}
