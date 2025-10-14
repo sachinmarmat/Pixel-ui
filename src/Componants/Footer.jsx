@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     
     <footer className="bg-blue-600 text-white py-8 mt-">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto  px-6 grid grid-cols-2 md:grid-cols-3 gap-20 sm:gap-50">
         
         <div>
           <h2 className="font-semibold text-lg mb-3">Links</h2>

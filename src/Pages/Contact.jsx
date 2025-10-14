@@ -33,7 +33,7 @@ const Contact = () => {
                         />
                         <textarea
                             placeholder="Message"
-                            className="p-4 rounded border border-gray-600"
+                            className="p-2 h-25 rounded border border-gray-600"
                         />
                         <button className="p-2 bg-blue-500 cursor-pointer text-white rounded-2xl hover:bg-blue-700 transition">
                             Send Message

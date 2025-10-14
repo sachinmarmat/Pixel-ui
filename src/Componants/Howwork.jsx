@@ -5,23 +5,36 @@ import { PiHandshakeFill } from "react-icons/pi";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
-
 const Howwork = () => {
   const steps = [
     {
-      icon: <BsFilePerson className="text-6xl text-blue-600" />,
+      icon: (
+        <BsFilePerson className="text-7xl text-blue-600 hover:text-blue-700" />
+      ),
       title: "Register",
       title2: "(Step-1)",
     },
-    { icon: <FaArrowRightLong className="text-4xl rotate-90 sm:rotate-0 text-gray-500" /> },
     {
-      icon: <MdEditDocument className="text-6xl text-blue-600 hover:text-red-600  hover:scale-110" />,
+      icon: (
+        <FaArrowRightLong className="text-4xl rotate-90 sm:rotate-0 text-gray-500" />
+      ),
+    },
+    {
+      icon: (
+        <MdEditDocument className="text-7xl text-blue-600 hover:text-blue-700  transition-all-0.5s hover:scale-110" />
+      ),
       title: "Apply",
       title2: "(Step-2)",
     },
-    { icon: <FaArrowRightLong className="text-4xl rotate-90 sm:rotate-0 text-gray-500" /> },
     {
-      icon: <PiHandshakeFill className="text-6xl text-blue-600" />,
+      icon: (
+        <FaArrowRightLong className="text-4xl rotate-90 sm:rotate-0 text-gray-500" />
+      ),
+    },
+    {
+      icon: (
+        <PiHandshakeFill className="text-7xl text-blue-600 hover:text-blue-700" />
+      ),
       title: "Get Hired",
       title2: "(Step-3)",
     },
@@ -42,9 +55,9 @@ const Howwork = () => {
   };
 
   return (
-    <div className="sm:px-20">
+    <div className="sm:px-20 pb-10">
       <div className="mt-15 bg-gray-100 shadow-xm hover:shadow p-5 rounded-2xl">
-        <h1 className="text-2xl sm:text-3xl font-semibold mb-11 sm:mb-7 hover:underline">
+        <h1 className="text-2xl sm:text-3xl inline-block font-semibold mb-11 sm:mb-7 hover:underline">
           How it Works
         </h1>
 
@@ -56,10 +69,14 @@ const Howwork = () => {
               variants={stepVariant}
               initial="hidden"
               animate="visible"
+              animation-timeline="view"
               className="flex flex-col gap-2 items-center text-center"
             >
               {/* ✅ Show the icon */}
-              <div className="hover:scale-110 cursor-pointer hover:text-red-700"> {step.icon}</div>
+              <div className="hover:scale-110 cursor-pointer ">
+                {" "}
+                {step.icon}
+              </div>
 
               {/* Show title only if it exists (arrows don’t need text) */}
               {step.title && (

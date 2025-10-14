@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 
-const Navbar = () => {
+const Defaultnav = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const navLinks = [
@@ -15,13 +15,13 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="w-full absolute sm:px-15 top-0 left-0 bg-transparent z-50">
+    <nav className="w-full absolute bg-gradient-to-r from-blue-600 to-[#76e5ef]  sm:px-15 top-0 left-0 bg-transparent z-50">
       <div className=" px-4 md:px-8">
-        <div className="flex justify-between items-center py-6">
+        <div className="flex justify-between items-center py-5">
           <div className='flex gap-2 items-center'>
             <a href='/'><img
               src={logo} 
-              alt="logo"
+              alt="logo" 
               className="w-12 sm:w-15 rounded-full cursor-pointer"
             /></a>
             <h1 className="font-medium flex flex-col  items-center">PIXELGENIX <span className="text-gray-600 font-semibold ">IT Solutions</span></h1>
@@ -96,4 +96,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Defaultnav

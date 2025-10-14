@@ -34,7 +34,7 @@ const Dask = () => {
         </p>
       </div>
       <h1 className='text-3xl font-bold  pl-4 pb-9 py-2 '>Quick State</h1>
-      <div className='flex flex-row gap-2 sm:max-w-255'>
+      <div className='flex flex-row gap-2  sm:max-w-266'>
         <button className='' onClick={slideBack}>
           <IoIosArrowBack className='bg-orange-600 rounded-4xl text-white hover:bg-orange-600 text-2xl cursor-pointer' />
         </button>
@@ -42,9 +42,9 @@ const Dask = () => {
         <div className='flex flex-row gap-10 overflow-hidden items-center '
           ref={sliderRef}
         >
-          <NavLink to="/Dashboard/Application">
+          <NavLink to="/Dashboard/Application"> 
 
-            <div className="min-w-[220px] w-[220px] h-[200px] bg-gray-100/60  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+            <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
               <h1 className="flex gap-4 items-center text-3xl font-bold ">
                 <span className="text-blue-500 "><IoDocumentText /></span>12</h1>
               <p className="text-[20px] font-bold text-gray-800 text-center">Application Submission</p>
@@ -52,32 +52,32 @@ const Dask = () => {
           </NavLink>
 
           <NavLink to="/Dashboard/Savedjobs">
-            <div className="min-w-[220px] w-[220px] h-[200px] bg-gray-100/60  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+            <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
               <h1 className='flex gap-4 items-center text-3xl font-bold '>
                 <span className='text-blue-500'><IoDocumentText /></span>4</h1>
               <p className='text-[20px] font-bold text-gray-800 text-center'>Saved Jobs </p>
             </div>
           </NavLink>
-          <div className="min-w-[220px] w-[220px] h-[200px] bg-gray-100/60  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+          <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
             <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>3</h1>
             <p className='text-[20px] font-bold text-gray-800 text-center'>Jobs Shortlist</p>
           </div>
           <NavLink to="/Dashboard/Carrerresources">
 
-            <div className="min-w-[220px] w-[220px] h-[200px] bg-gray-100/60 hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+            <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100 hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
               <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>16</h1>
               <p className='text-[20px] font-bold text-gray-800  text-center'>Career Resoures</p>
             </div>            </NavLink>
 
-          <div className="min-w-[220px] w-[220px] h-[200px] bg-gray-100/60  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+          <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100 hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
             <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>7</h1>
             <p className='text-[20px] font-bold text-gray-800  text-center'>Status Jobs</p>
           </div>
-          <div className="min-w-[220px] w-[220px] h-[200px] bg-gray-100/60 hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+          <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100 hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
             <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>21</h1>
             <p className='text-[20px] font-bold text-gray-800  text-center'>Intern</p>
           </div>
-          <div className="min-w-[220px] w-[220px] h-[200px] bg-gray-100/60  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+          <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
             <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>6</h1>
             <p className='text-[20px] font-bold text-gray-800 pl-3  text-center'>Employers</p>
           </div>

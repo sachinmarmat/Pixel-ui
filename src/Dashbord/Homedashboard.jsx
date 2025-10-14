@@ -1,47 +1,63 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { IoHomeOutline, IoCartOutline } from "react-icons/io5";
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { IoLogOutSharp } from "react-icons/io5";
 import { TfiMenuAlt } from "react-icons/tfi";
-import { HiMenu } from "react-icons/hi";       // 3-dot/hamburger icon
-import { HiX } from "react-icons/hi";          // Close icon
+import { HiMenu, HiX } from "react-icons/hi";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
-import { IoLogOutSharp } from "react-icons/io5";
-import { GrResources } from "react-icons/gr";
-import { BsPersonCircle } from "react-icons/bs";
+import { GrResources, GrDocumentUser } from "react-icons/gr";
+import { BsPersonCircle, BsBookmarkCheckFill } from "react-icons/bs";
 import { PiCirclesFour } from "react-icons/pi";
-import { BsBookmarkCheckFill } from "react-icons/bs";
 import { ImHome } from "react-icons/im";
-import { GrDocumentUser } from "react-icons/gr";
-
-
+import Jobfilter from './DesComponant/Jobfilter';
 
 const Homedashboard = () => {
-  const [open, setOpen] = useState(true); 
-  const [active, setActive] = useState("notifications");
+  const [open, setOpen] = useState(true);          // sidebar open/close
+  const [settingOpen, setSettingOpen] = useState(false); // dropdown open/close
+  const [jobs, setJobs] = useState(false);
 
+  const location = useLocation();
+
+
+  //  Close dropdown only when going outside Dashboardsetting
+  useEffect(() => {
+    if (!location.pathname.startsWith("/Dashboard/Dashboardsetting")) {
+      setSettingOpen(false);
+    }
+  }, [location.pathname]);
+  useEffect(() => {
+    if (!location.pathname.startsWith("/Dashboard/Jobs")) {
+      setJobs(false);
+    }
+  }, [location.pathname]);
 
   const linkstyle = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-2 rounded-md font-semibold text-[18px] 
-     ${isActive ? 'bg-blue-100/50 text-orange-600' : 'text-blue-600 hover:bg-gray-100'}`;
+     ${isActive ? 'bg-blue-100 text-orange-600' : 'text-blue-600 hover:bg-gray-100'}`;
+
+
 
   return (
     <>
-      {/* Top bar visible only on mobile */}
-      <div className="sm:hidden inline-block contain-inline-size justify-between  relative">
-        <h1 className="font-bold text-xl text-blue-600 sm:hidden flex absolute top-0">  Dashboard</h1>
+      {/* Mobile top bar */}
+      <div className="sm:hidden inline-block contain-inline-size justify-between relative">
+        <h1 className="font-bold text-xl text-blue-600 sm:hidden flex absolute top-0">Dashboard</h1>
         <button onClick={() => setOpen(!open)}>
-          {open ? <HiX className="text-2xl absolute top-2 left-40" /> : <HiMenu className="text-2xl absolute top-5 left-35 " />}
+          {open ? (
+            <HiX className="text-2xl absolute top-2 left-40" />
+          ) : (
+            <HiMenu className="text-2xl absolute top-5 left-35 " />
+          )}
         </button>
       </div>
 
-      {/* Sidebar: always visible on sm+, slide-in menu on mobile */}
+      {/* Sidebar */}
       <div
         className={`
-            top-0 left-0 max:h-full w-48  bg-[#f8f9fa] px-1 sm:px-6 py-5 sm:py-10 
-          transition-transform duration-300 sm:pl-5
-          ${open ? "translate-x-0" : "-translate-x-full "} 
-          sm:translate-x-0 sm:relative sm:w-72  
+          top-0 left-0 min-h-screen h-full shadow-lg w-48 bg-[#f2fbff] px-1 sm:px-6 py-5 sm:py-10 
+          transition-transform duration-300 sm:pl-7
+          ${open ? "translate-x-0" : "-translate-x-full"} 
+          sm:translate-x-0 sm:relative sm:w-73  
         `}
       >
         <nav className="flex flex-col gap-3">
@@ -53,9 +69,17 @@ const Homedashboard = () => {
             <BsPersonCircle className="text-lg" /> Profile
           </NavLink>
 
-          <NavLink to="/Dashboard/Jobs" className={linkstyle}>
-            <TfiMenuAlt className="text-lg" /> Jobs
-          </NavLink> 
+          {/* Jobs with sublinks */}
+          <div>
+            <NavLink
+              to="/Dashboard/Jobs"
+
+              onClick={() => setJobs(!jobs)}
+              className={linkstyle}            >
+              <TfiMenuAlt className="text-lg" /> Jobs
+            </NavLink>
+            {jobs && <Jobfilter />}
+          </div>
 
           <NavLink to="/Dashboard/Application" className={linkstyle}>
             <PiCirclesFour className="text-lg" /> Application
@@ -71,57 +95,57 @@ const Homedashboard = () => {
 
           <NavLink to="/Dashboard/carrerresources" className={linkstyle}>
             <GrResources className="text-lg" /> Career Resources
-          </NavLink> 
+          </NavLink>
 
+          {/* Settings dropdown */}
           <div className="w-full">
-            {/* Top link that toggles the dropdown */}
-            <NavLink
-            to="/Dashboard/Satting" 
-              onClick={() => setOpen(!open)} 
-             className={linkstyle}  
+            <div
+              onClick={() => setSettingOpen(!settingOpen)}
+              className="cursor-pointer flex items-center justify-between px-4 py-2 rounded-md font-semibold text-[18px] text-blue-600 hover:bg-gray-100"
             >
               <span className="flex items-center gap-2">
-                <FiSettings className="text-lg" /> 
+                <FiSettings className="text-lg" />
                 Settings
               </span>
               <MdOutlineKeyboardArrowDown
-                className={`text-xl transition-transform duration-300
-                      ${open ? "rotate-180" : {}}`}
+                className={`text-xl transition-transform duration-300 ${settingOpen ? "rotate-180" : ""}`}
               />
-            </NavLink>
+            </div>
 
-            {/* Dropdown items */}
-            {!open && (
+            {settingOpen && (
               <div className="mt-1 ml-8 flex flex-col gap-1">
                 <NavLink
-                  to="/Dashboard/Changepassword"
-                  onClick={() => setActive("password")}
-                  className={`px-3 py-1 rounded
-               ${active === "password"
+                  to="/Dashboard/Dashboardsetting/Changepassword"
+                  className={({ isActive }) =>
+                    `px-3 py-1 rounded ${isActive
                       ? "bg-blue-100/80 font-medium text-orange-600"
-                      : "hover:bg-gray-100"}`}
+                      : "hover:bg-gray-100"
+                    }`
+                  }
                 >
                   Change password
                 </NavLink>
 
                 <NavLink
-                  to="/Dashboard/Satting"
-                  onClick={() => setActive("notifications")}
-                  className={`px-3 py-1 rounded
-               ${active === "notifications"
-                      ? "bg-blue-100/80 font-medium text-gray-600"
-                      : "hover:bg-gray-100"}`}
+                  to="/Dashboard/Dashboardsetting/Notification"
+                  className={({ isActive }) =>
+                    `px-3 py-1 rounded ${isActive
+                      ? "bg-blue-100/80 font-medium text-orange-600"
+                      : "hover:bg-gray-100"
+                    }`
+                  }
                 >
                   Notifications
                 </NavLink>
 
                 <NavLink
-                  to="/Dashboard/Deleteacc"
-                  onClick={() => setActive("delete")}
-                  className={`px-3 py-1 rounded
-               ${active === "delete"
-                      ? "bg-blue-100/80 font-medium text-gray-600"
-                      : "hover:bg-gray-100"}`}
+                  to="/Dashboard/Dashboardsetting/Deleteacc"
+                  className={({ isActive }) =>
+                    `px-3 py-1 rounded ${isActive
+                      ? "bg-blue-100/80 font-medium text-orange-600"
+                      : "hover:bg-gray-100"
+                    }`
+                  }
                 >
                   Delete Account
                 </NavLink>
@@ -129,19 +153,22 @@ const Homedashboard = () => {
             )}
           </div>
 
+
           <NavLink to="/Dashboard/GetAheadWithPixel" className={linkstyle}>
             <IoLogOutSharp className="text-lg" /> Logout
           </NavLink>
-        </nav>
-      </div>
+        </nav >
+      </div >
 
-      {/* Optional overlay when menu is open on mobile */}
-      {open && (
-        <div
-          onClick={() => setOpen(false)}
-          className="sm:hidden  inset-0 bg-black/30"
-        />
-      )}
+      {/* Mobile overlay */}
+      {
+        open && (
+          <div
+            onClick={() => setOpen(false)}
+            className="sm:hidden fixed inset-0 bg-black/30"
+          />
+        )
+      }
     </>
   );
 };

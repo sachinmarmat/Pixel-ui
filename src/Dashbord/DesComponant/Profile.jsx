@@ -6,6 +6,6 @@ const Profile = () => {
       profile
     </div>
   )
-}
-
+} 
+ 
 export default Profile

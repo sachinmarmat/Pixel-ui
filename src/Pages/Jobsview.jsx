@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { PiCirclesFour } from 'react-icons/pi'
-import logo from '../../assets/logo.png'
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp } from 'react-icons/io5';
+import logo from '../assets/logo.png'
+import { Briefcase, IndianRupee, MapPin } from 'lucide-react';
+import Defaultnav from '../Componants/Defaultnav';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-const Jobs = () => {
+const Jobsview = () => {
+
   const Jobdata = [{
     title: "Senior UI Designer",
     company: "PixelGenix",
@@ -92,60 +93,71 @@ const Jobs = () => {
       { title: "Communication", company: "Amazon" },
     ],
   },
-  ]; 
- 
+  ];
 
-  const filters = useSelector(state => state.job.appliedFilters || {});
+  const [view, setview] = useState([]);
+  const jobdetail = (job) => {
+    setview([job])
+  }
 
-  // helper: extract minimum salary number 
-
-  const getMinSalary = (salaryStr) => {
-    const match = salaryStr.match(/₹(\d+)/);
-    return match ? parseInt(match[1]) : 0;
-  };
- 
   const { applied } = useSelector(state => state.job);
 
   const filteredJobs = Jobdata.filter(job => {
     return (
       (applied.title === "" || job.title.toLowerCase().includes(applied.title.toLowerCase())) &&
-      (applied.location === "" || job.location.toLowerCase().includes(applied.location.toLowerCase())) &&
-      (applied.salary === 0 || getMinSalary(job.salary) >= applied.salary) &&
-      (applied.jobtype.length === 0 || applied.jobtype.includes(job.jobtype)) &&
-      (applied.experience === "" || job.experience === applied.experience)
+      (applied.location === "" || job.location.toLowerCase().includes(applied.location.toLowerCase()))
     );
   });
- 
 
-  const jobsperpage = 3;
-  const [currentpage, setcurrentpage] = useState(1);
+  // const jobsshow =()=>{
+  //   filteredJobs()
+  //   view()
+  // } 
 
-  const totalpage = Math.ceil(filteredJobs.length / jobsperpage)
-  const indexoflastjob = currentpage * jobsperpage
-  const indexoffirstjob = indexoflastjob - jobsperpage
-  const currentjobs = filteredJobs.slice(indexoffirstjob, indexoflastjob)
+  return (<>
+
+    <Defaultnav />
+    <div className="flex flex-row gap-5 ">
+      <div className=" bg-sky-200/20 mt-25 px-5 shadow-2xl p-3 ">
+        {Jobdata.map((data) => (
+          <div className="w-full max-w-[50vh] bg-blue-200 rounded-xl shadow-md p-6 mb-6  hover:shadow-lg transition-shadow">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+              <h2 className="text-xl font-semibold text-gray-800">
+                {data.title}
+              </h2>
+              <span className="text-sm text-gray-500 hover:underline">{data.company}</span>
+            </div>
+
+            {/* Footer info */}
+            <div className="flex flex-wrap gap-6 text-gray-600 text-sm">
+              <span className="flex items-center gap-1">
+                <MapPin size={16} /> {data.location}
+              </span>
+              <span className="flex items-center gap-1">
+                <Briefcase size={16} /> {data.experience}
+              </span>
+              <span className="flex items-center gap-1">
+                <IndianRupee size={16} /> {data.salary}
+              </span>
+            </div>
+
+            {/* View Details Button */}
+            <div className="mt-4">
+              <button className="border border-red-400 text-red-500 px-4 py-2 rounded-full hover:bg-red-50 cursor-pointer transition"
+                onClick={() => jobdetail(data)}>
+                View Details
+              </button>
+            </div>
+          </div>
+        ))
+        }
+      </div>
 
 
-  const pagechange = (pagenumber) => {
-    setcurrentpage(pagenumber)
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-const navigate= useNavigate() 
-
-
-const handleapply=(item)=>{
-  navigate('/JobApplyForm', {state: {item} })
-}
-
-  return (
-    <div>
-      <h1 className="text-orange-600 m-3 text-2xl font-medium flex flex-row gap-3 items-center">
-        <PiCirclesFour className="text-3xl bg-orange-500 p-1 text-white rounded-4xl" /> Jobs
-      </h1>
-      <div className="flex flex-col gap-5 mt-8 ml-3 rounded-2xl">
-        {currentjobs.length ? (
-          currentjobs.map((item, index) => (
+      <div className='gap-5 flex flex-col mt-35 px-5'>
+        {filteredJobs.length ? (
+          filteredJobs.map((item, index) => (
             <div key={index} className="bg-blue-100 grid mx-auto max-w-6xl grid-cols-1 sm:grid-cols-3 p-5 rounded-2xl">
               <div className="md:col-span-2 space-y-6">
                 {/* Job Header */}
@@ -197,8 +209,8 @@ const handleapply=(item)=>{
                   </div>
                 </div>
                 {/* <a href="/JobApplyForm" className=""> */}
-                 <button className="w-full mt-5 md:w-auto bg-blue-600/90 hover:bg-blue-700 cursor-pointer text-white px-8 py-3 rounded-lg font-semibold transition"
-                onClick={()=>handleapply(item.title)}>
+                <button className="w-full mt-5 md:w-auto bg-blue-600/90 hover:bg-blue-700 cursor-pointer text-white px-8 py-3 rounded-lg font-semibold transition"
+                  onClick={() => handleapply(item.title)}>
                   Apply Now
                 </button>
                 {/* </a> */}
@@ -230,44 +242,14 @@ const handleapply=(item)=>{
               </div>
             </div>
           ))
-        ) : (
+        ) : ( 
           <p className="text-gray-500 text-4xl pl-45 sm:m-40 font-semibold ">No jobs found</p>
         )}
       </div> 
-
-
-      {totalpage > 1 && (
-        <div className="flex justify-center items-center gap-3 mt-10 mb-10">
-          <button
-            disabled={currentpage === 1}
-            onClick={() => pagechange(currentpage - 1)}
-            className={`px-4 py-2 rounded-lg font-semibold ${currentpage === 1 ? "bg-gray-300" : "bg-blue-600 text-white hover:bg-blue-700"}`}
-          >
-            Prev
-          </button>
-
-          {[...Array(totalpage)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => pagechange(index + 1)}
-              className={`px-4 py-2 rounded-lg font-semibold ${currentpage === index + 1 ? "bg-orange-500 text-white" : "bg-gray-200 hover:bg-gray-300"
-                }`}
-            >
-              {index + 1}
-            </button>
-          ))}
-
-          <button
-            disabled={currentpage === totalpage}
-            onClick={() => pagechange(currentpage + 1)}
-            className={`px-4 py-2 rounded-lg font-semibold ${currentpage === totalpage ? "bg-gray-300" : "bg-blue-600 text-white hover:bg-blue-700"}`}
-          >
-            Next
-          </button>
-        </div>
-      )}
     </div>
-  );
-};
+  </>
 
-export default Jobs;
+  )
+}
+
+export default Jobsview

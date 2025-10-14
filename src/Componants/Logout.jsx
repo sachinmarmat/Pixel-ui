@@ -24,7 +24,7 @@ const GetAheadWithPixel = () => {
   // const filterdata = jobCategories.filter((t) =>
   //   t.toLowerCase().includes(searchTerm.toLowerCase())
   // )
-
+ 
 
   return (
     <section className="py-16 bg-gray-50 flex flex-col items-center justify-center">

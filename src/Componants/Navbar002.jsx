@@ -1,61 +1,35 @@
 import React, { useState } from 'react'
 import bgimg from '../assets/bg-img.jpg'
 import { MapPin, Briefcase, IndianRupee } from "lucide-react"; // optional icons (npm i lucide-react)
+import { useDispatch, useSelector } from 'react-redux';
+import { applyFilters, updateTemporary } from '../redux/slice/jobslice';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar002 = () => {
 
-  const [findjob, setfindjob] = useState();
-  const [showjob, setshowjob] = useState(false)
+  // const [findjob, setfindjob] = useState();
 
-  const jobfind = (e) => {
-    setfindjob((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    console.log(findjob)
-  }
+  // const jobfind = (e) => {
+  //   setfindjob((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  //   console.log(findjob)
+  // }
+  const dispatch = useDispatch();
+  const { temporary } = useSelector((state) => state.job);
 
+  const handleChange = (field, value) => {
+    dispatch(updateTemporary({ field, value }));
+  };
 
-  const Jobs = [
-    {
-      title: "Web Development",
-      company: "pixel",
-      description: "welcome to pixelgenix",
-      location: "Jaipur",
-      salary: "40-50k",
-      creactedBy: "User",
-      createdAt: "24 sep 2025"
-
-    },
-    {
-      title: "Frontend developer",
-      company: "pixel",
-      description: "welcome to pixelgenix",
-      location: "Jaipur",
-      salary: "40-50k",
-      creactedBy: "User",
-      createdAt: "24 sep 2025"
-    },
-    {
-      title: "Backend Development",
-      company: "pixel",
-      description: "welcome to pixelgenix",
-      location: "Jaipur",
-      salary: "40-50k",
-      creactedBy: "User",
-      createdAt: "24 sep 2025"
-    },
-  ]
-
-
-
-  const find = () => {
-
-    setshowjob(true)
-    console.log(findjob)
-  }
+  const navigate=useNavigate()
+const handleFindJob = () => {
+  dispatch(applyFilters());
+  navigate("/Jobsview");
+};
 
 
   return (
     <div>
-      <div className=" min-h-[35rem] sm:min-h-[44rem] relative">
+      <div className=" min-h-[35rem] sm:min-h-[45rem] relative">
         {/* Background Image */}
         <div
           className="absolute inset-0 h-full w-full bg-cover bg-center"
@@ -63,7 +37,7 @@ const Navbar002 = () => {
         ></div>
 
         {/* Content */}
-        <div className="relative  z-10 max-w-screen-xl px-6 pt-44 sm:pt-68 sm:pl-40 items-center sm:items-start text-center sm:text-left lg:pt-65">
+        <div className="relative  z-10 max-w-screen-xl px-6 pt-44 sm:pt-65 sm:pl-40 items-center sm:items-start text-center sm:text-left lg:pt-67">
           {/* Heading */}
           <div className="flex flex-col  ">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-white">
@@ -82,70 +56,29 @@ const Navbar002 = () => {
             <input
               type="text"
               name='jobtitle'
-              onChange={jobfind}
+              value={temporary.title}
+              onChange={(e) => handleChange("title", e.target.value)}
               placeholder="Job Title"
-              className="border border-gray-400 bg-black/30 text-white placeholder:text-gray-300 p-3 pl-4 rounded-xl font-medium w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="border border-gray-400 bg-black/30 text-white placeholder:text-gray-300 p-3 pl-4 rounded-xl font-medium w-full sm:w-80 focus:outline-none focus:ring-1 focus:ring-blue-400 outline-hidden"
             />
 
             <input
               type="text"
               name='location'
-              onChange={jobfind}
+              value={temporary.location}
+        onChange={(e) => handleChange("location", e.target.value)}
               placeholder="Location"
-              className="border border-gray-400 bg-black/30 text-white placeholder:text-gray-300 p-3 pl-4 rounded-xl font-medium w-full sm:w-65 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="border border-gray-400 bg-black/30 text-white placeholder:text-gray-300 p-3 pl-4 rounded-xl font-medium w-full sm:w-65 focus:outline-none focus:ring-1 focus:ring-blue-400 outline-hidden"
             />
-            <button className="bg-blue-500 p-3 rounded hover:bg-blue-700 cursor-pointer sm:mb-0 mb-8 font-medium px-6 transform transition-transform duration-200 hover:scale-105 w-full sm:w-auto text-white"
-              onClick={find}  >
+            <button className="bg-blue-600 p-3 rounded hover:bg-blue-700 cursor-pointer sm:mb-0 mb-8 font-medium px-6 transform transition-transform duration-200 hover:scale-101 w-full sm:w-auto text-white"
+              onClick={ handleFindJob}
+            >
 
               Find Job
             </button>
 
           </div>
         </div>
-      </div>
-
-      <div className='flex flex-row gap-5 justify-center mt-5'>
-        {showjob && (
-
-          Jobs.map((items) => (
-            <div className="w-full max-w-[50vh] bg-gray-200 rounded-xl shadow-md p-6 mb-6 hover:shadow-lg transition-shadow">
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                <h2 className="text-xl font-semibold text-gray-800">
-                  {items.title}
-                </h2>
-                <span className="text-sm text-gray-500">{items.company}</span>
-              </div>
-
-              {/* Description */}
-              <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                {items.description}
-              </p>
-
-              {/* Footer info */}
-              <div className="flex flex-wrap gap-6 text-gray-600 text-sm">
-                <span className="flex items-center gap-1">
-                  <MapPin size={16} /> {items.location}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Briefcase size={16} /> {items.experience}
-                </span>
-                <span className="flex items-center gap-1">
-                  <IndianRupee size={16} /> {items.salary}
-                </span>
-              </div>
-
-              {/* View Details Button */}
-              <div className="mt-4">
-                <button className="border border-red-400 text-red-500 px-4 py-2 rounded-full hover:bg-red-50 transition">
-                  View Details
-                </button>
-              </div>
-            </div>
-
-          ))
-
-        )}
       </div>
 
     </div>

@@ -4,7 +4,6 @@ import { FaChevronDown } from "react-icons/fa6";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import GetAheadWithPixel from "./Logout";
 
-
 const slideindex = [
   {
     img: "https://img.freepik.com/premium-photo/3d-character-animation-icon-logo-cartoon-poses-with-human-body-background_762678-15079.jpg",
@@ -36,6 +35,7 @@ const About = () => {
     setIndex(index === slideindex.length - 1 ? 0 : index + 1);
   };
 
+  // const [fill ,setfill]=useState();
 
   const jobTitles = [
     "Web Development",
@@ -65,11 +65,11 @@ const About = () => {
     t.toLowerCase().includes(titleFilter.toLowerCase())
   );
   const filteredLocations = jobLocations.filter((l) =>
-    l.toLowerCase().includes(locationFilter.toLowerCase())
+    l.toLowerCase().includes(locationFilter.toLowerCase()) 
   );
 
-
-  return (
+  return ( 
+    
     <div className="px-4 sm:px-22 py-2 md:py-6">
       {/* Testimonials */}
       <h1 className="text-2xl sm:text-3xl font-semibold mb-6">Testimonials</h1>
@@ -119,14 +119,15 @@ const About = () => {
                 setLocationOpen(false);
               }}
               className="w-full flex justify-between items-center px-4 py-3
-                       bg-white rounded-lg shadow hover:shadow-md
-                       border border-gray-200 text-gray-700 font-medium
-                       transition"
+             bg-white rounded-lg shadow hover:shadow-md
+             border border-gray-200 text-gray-700 font-medium
+             transition"
             >
-              For Job Seeker
+              {/* 👇 show the selected value or placeholder */}
+              {"For Job Seeker"}
               <MdKeyboardArrowDown
                 className={`text-xl transform transition-transform duration-200
-                          ${titleOpen ? "rotate-180" : ""}`}
+                ${titleOpen ? "rotate-180" : ""}`}
               />
             </button>
 
@@ -144,71 +145,80 @@ const About = () => {
                     <li
                       key={title}
                       className="px-4 py-2 hover:bg-indigo-50 cursor-pointer text-gray-700"
+                      onClick={() => {
+                        setTitleFilter(title); // ✅ fill input with clicked value
+                        setTitleOpen(true); // ✅ close dropdown
+                      }}
                     >
                       {title}
                     </li>
                   ))}
                   {filteredTitles.length === 0 && (
-                    <li className="px-4 py-2 text-gray-400 text-sm">No results</li>
+                    <li className="px-4 py-2 text-gray-400 text-sm">
+                      No results
+                    </li>
                   )}
                 </ul>
               </div>
             )}
           </div>
-
           {/* Divider for large screen */}
           <div className="hidden sm:block w-px h-12 bg-gray-300"></div>
 
           {/* ===== Popular Job Locations ===== */}
-          <div className="relative w-full sm:w-64">
-            <button
-              onClick={() => {
-                setLocationOpen(!locationOpen);
-                setTitleOpen(false);
-              }}
-              className="w-full flex justify-between items-center px-4 py-3
-                       bg-white rounded-lg shadow hover:shadow-md
-                       border border-gray-200 text-gray-700 font-medium
-                       transition"
-            >
-              For Employers
-              <MdKeyboardArrowDown
-                className={`text-xl transform transition-transform duration-200
-                          ${locationOpen ? "rotate-180" : ""}`}
-              />
-            </button>
+        <div className="relative w-full sm:w-64">
+  <button
+    onClick={() => {
+      setLocationOpen(!locationOpen);
+      setTitleOpen(false);
+    }}
+    className="w-full flex justify-between items-center px-4 py-3
+             bg-white rounded-lg shadow hover:shadow-md
+             border border-gray-200 text-gray-700 font-medium
+             transition"
+  >
+    {/* 👇 show selected value or default placeholder */}
+    {"For Employers"}
+    <MdKeyboardArrowDown
+      className={`text-xl transform transition-transform duration-200
+                ${locationOpen ? "rotate-180" : ""}`}
+    />
+  </button>
 
-            {locationOpen && (
-              <div className="absolute z-20 w-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200">
-                <input
-                  type="text"
-                  placeholder="Filter locations..."
-                  value={locationFilter}
-                  onChange={(e) => setLocationFilter(e.target.value)}
-                  className="w-full px-3 py-2 border-b text-sm focus:outline-none"
-                />
-                <ul className="max-h-48 overflow-y-auto">
-                  {filteredLocations.map((loc) => (
-                    <li
-                      key={loc}
-                      className="px-4 py-2 hover:bg-indigo-50 cursor-pointer text-gray-700"
-                    >
-                      {loc}
-                    </li>
-                  ))}
-                  {filteredLocations.length === 0 && (
-                    <li className="px-4 py-2 text-gray-400 text-sm">No results</li>
-                  )}
-                </ul>
-              </div>
-            )}
-          </div>
-        </div> 
+  {locationOpen && (
+    <div className="absolute z-20 w-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200">
+      <input
+        type="text"
+        placeholder="Filter locations..."
+        value={locationFilter}
+        onChange={(e) => setLocationFilter(e.target.value)}
+        className="w-full px-3 py-2 border-b text-sm focus:outline-none"
+      />
+      <ul className="max-h-48 overflow-y-auto">
+        {filteredLocations.map((loc) => (
+          <li
+            key={loc}
+            className="px-4 py-2 hover:bg-indigo-50 cursor-pointer text-gray-700"
+            onClick={() => {
+              setLocationFilter(loc);     // fill input & button text
+              setLocationOpen(true);     //  close dropdown
+            }}
+          >
+            {loc}
+          </li>
+        ))}
+        {filteredLocations.length === 0 && (
+          <li className="px-4 py-2 text-gray-400 text-sm">No results</li>
+        )}
+      </ul>
+    </div>
+  )}
+</div>
+
+        </div>
       </section>
 
-
       {/* <GetAheadWithPixel /> */}
-
     </div>
   );
 };

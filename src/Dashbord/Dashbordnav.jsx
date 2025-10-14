@@ -57,17 +57,17 @@ const Dashbordnav = () => {
               placeholder="Search job here"
               className="w-65 text-xm  border outline-none border-gray-400 pl-4 pr-10 py-2 rounded-3xl bg-white"
             />
-            <BiSearch className="absolute top-1 right-1 -translate-y-1 text-3xl bg-blue-500 rounded-full p-1 text-white cursor-pointer hover:bg-blue-600" />
+            <BiSearch className="absolute top-2 right-1 -translate-y-1 text-3xl bg-blue-500 rounded-full p-1  text-white cursor-pointer hover:bg-blue-600" />
           </div>
 
           {/* Search icon on mobile */}
           <BiSearch className="md:hidden text-3xl text-white bg-blue-500 rounded-full p-1 cursor-pointer hover:bg-blue-600"
             onClick={() => setSearchonclick(!searchonclick)}
           />
-
+ 
           {searchonclick && (
             <div className="md:hidden">
-              <input
+              <input 
                 placeholder="Search job here"
                 className="w-30 text-sm border outline-none border-gray-400 pl-4 pr-10 py-2 rounded-3xl bg-white"
                 autoFocus

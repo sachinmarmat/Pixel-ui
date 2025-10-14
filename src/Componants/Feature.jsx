@@ -41,7 +41,7 @@ const Feature = () => {
     {
       title: "Web-Development",
       location: "Luxman Colony, Jaipur, Raj",
-      salary: "40k–45k / Monthly",
+      salary: "40k–45k / Monthly", 
     },
     {
       title: "Graphix-Designer",
@@ -71,12 +71,12 @@ const Feature = () => {
                 <p className="font-medium text-gray-700">{job.location}</p>
               </div>
 
-              {/* Right Side */}
+              {/* Right Side */} 
               <div className="flex flex-col md:items-end gap-4">
                 <button className="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 transition cursor-pointer">
                   Apply Now
                 </button>
-                <h2 className="font-semibold">{job.salary}</h2>
+                <h2 className="font-semibold">{job.salary}</h2> 
               </div>
             </div>
           ))}
@@ -90,7 +90,7 @@ const Feature = () => {
           0% { transform: translateX(0%); }
           100% { transform: translateX(-50%); }
         }
-
+  
         .animate-slide {
           display: flex;
           width: max-content;

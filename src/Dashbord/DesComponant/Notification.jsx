@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Satting = () => {
+const Notification = () => {
   return (
     <div className='ml-15'>
       <div className='py-2'>
@@ -21,4 +21,4 @@ const Satting = () => {
   )
 }
 
-export default Satting
+export default Notification
