@@ -5,10 +5,12 @@ import { GrResources } from "react-icons/gr";
 import { BsPersonCircle } from "react-icons/bs";
 import { PiCirclesFour } from "react-icons/pi";
 import { BsBookmarkCheckFill } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Employernav = () => {
-  //   const [open, setOpen] = useState(true);
+    // const [role, setRole] = useState(true);
+
+    const navigate=useNavigate()
 
   const linkstyle = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-2 rounded-md font-semibold text-[18px] 
@@ -17,6 +19,12 @@ const Employernav = () => {
          ? "text-orange-700  bg-orange-100/30"
          : " text-white hover:bg-blue-400"
      }`;
+
+ const handleLogout = () => { 
+    localStorage.clear();
+    // setRole(null);
+    navigate('/');
+  }; 
 
   return (
     <div>
@@ -53,7 +61,7 @@ const Employernav = () => {
             <GrResources className="text-lg" /> Setting
           </NavLink>
 
-          <NavLink to="/Employedashboard/Logout" className={linkstyle}>
+          <NavLink to="/" className={linkstyle} onClick={handleLogout}>
             <IoLogOutSharp className="text-lg" /> Logout
           </NavLink>
         </nav>

@@ -7,7 +7,9 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
     key: "root",
     storage,
+    
 }
+// localStorage.removeItem('persist:root');
 const persistreducer = persistReducer(persistConfig, jobReducer)
 
 export const store = configureStore({

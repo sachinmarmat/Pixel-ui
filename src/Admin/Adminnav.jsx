@@ -19,6 +19,13 @@ const Adminnav = () => {
             : " text-white hover:bg-blue-400/50"
         }`;
 
+
+    const handleLogout = () => {
+        localStorage.clear();
+        // setRole(null);
+        navigate('/');
+    };
+
     return (
         <div>
             <div
@@ -64,14 +71,14 @@ const Adminnav = () => {
                             className={linkstyle + " cursor-pointer flex items-center text-center"}
                             onClick={() => setOpen(!open)}
                         >
-                                         <FiSettings className="text-lg" /> 
+                            <FiSettings className="text-lg" />
                             Setting
                             <MdOutlineKeyboardArrowDown
                                 className={`text-xl transition-transform  duration-300
                                               ${open ? "rotate-180" : {}}`}
                             /></h1>
                         {open && (
-                            <div className="absolute left-0 mt-1 flex flex-col gap-2  shadow rounded">
+                            <div className="absolute bg-red-300 p-1 left-0 mt-1 flex flex-col gap-2  shadow rounded">
 
 
                                 <NavLink
@@ -91,9 +98,9 @@ const Adminnav = () => {
                     </div>
 
 
-                    {/* <NavLink to="/Admin/Setting" className={linkstyle}>
-                        <GrResources className="text-lg" /> Setting
-                    </NavLink> */}
+                    <NavLink to="/" className={linkstyle} onClick={handleLogout}>
+                        <GrResources className="text-lg" /> Logout
+                    </NavLink>
 
                 </nav>
             </div>

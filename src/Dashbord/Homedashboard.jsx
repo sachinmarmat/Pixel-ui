@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { IoLogOutSharp } from "react-icons/io5";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -17,7 +17,7 @@ const Homedashboard = () => {
   const [jobs, setJobs] = useState(false);
 
   const location = useLocation();
-
+  const navigate = useNavigate()
 
   //  Close dropdown only when going outside Dashboardsetting
   useEffect(() => {
@@ -35,7 +35,11 @@ const Homedashboard = () => {
     `flex items-center gap-3 px-4 py-2 rounded-md font-semibold text-[18px] 
      ${isActive ? 'bg-blue-100 text-orange-600' : 'text-blue-600 hover:bg-gray-100'}`;
 
-
+  const handleLogout = () => {
+    localStorage.clear();
+    // setRole(null);
+    navigate('/');
+  };
 
   return (
     <>
@@ -154,7 +158,7 @@ const Homedashboard = () => {
           </div>
 
 
-          <NavLink to="/Dashboard/GetAheadWithPixel" className={linkstyle}>
+          <NavLink to="/" className={linkstyle} onClick={handleLogout}>
             <IoLogOutSharp className="text-lg" /> Logout
           </NavLink>
         </nav >

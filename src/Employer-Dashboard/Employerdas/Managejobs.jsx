@@ -1,58 +1,75 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { BsFillBellFill } from 'react-icons/bs'
 import { IoPeopleSharp } from 'react-icons/io5'
+import { useNavigate } from 'react-router-dom'
+
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Managejobs = () => {
+  const navigate = useNavigate()
 
 
   const [search, setsearch] = useState("");
+  const [jobs, setjobs] = useState([])
 
-  const managejobs = [
-    {
-      employer: "Raghav singh",
-      jobtitle: "Frontend Developer",
-      date: "22 sep 2025",
-      status: "Active",
-      recived: "13",
-    },
-    {
-      employer: "Devs dhosan",
-      jobtitle: "UI Developer",
-      date: "21 august 2025",
-      status: "Shortlisted",
-      recived: "4",
+  // user.(localStorage.getjobs(""))
 
-    },
-    {
-      employer: "Rajan chipa",
-      jobtitle: "Backend Developer",
-      date: "14 sep 2025",
-      status: "Rejected",
-      recived: "22",
+  const user = JSON.parse(localStorage.getItem('user'))
+  const id = user?.id
 
-    },
-    {
-      employer: "Surendra bairwa",
-      jobtitle: "Designer",
-      date: "4 june 2025",
-      status: "Accepted",
-      recived: "10",
+  const token = localStorage.getItem('accessToken')
+  const fatchjobs = async () => {
+    try {
+      const getjobs = await axios.get(`http://localhost:8080/api/jobs/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    },
-    {
-      employer: "Raghav chadda",
-      jobtitle: "Designer",
-      date: "30 june 2025",
-      status: "Shortlisted",
-      recived: "23",
+      console.log('Jobs fetched:', getjobs.data);
+      setjobs(getjobs.data.job || []); // THIS LINE FIXED
 
+    } catch (error) {
+      console.log('error fetching job', error)
     }
-  ]
+  }
 
-  const managejobfilter = managejobs.filter(jobs =>
-    jobs.jobtitle.toLowerCase().includes(search.toLowerCase()) ||
-    jobs.employer.toLowerCase().includes(search.toLowerCase())
+  useEffect(() => {
+    fatchjobs()
+  }, [])
+
+
+  const deletejobs = async (id) => {
+    if (!window.confirm("Do you really want to delete this job?")) return;
+
+    try {
+      await axios.delete(`http://localhost:8080/api/jobs/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Job deleted successfully!");
+      fatchjobs();
+    } catch (error) {
+      console.log("Error deleting job:", error.response?.data || error);
+      toast.error("Failed to delete job");
+    }
+  };
+
+  // const closejob = (jobstate) => {
+
+  // }
+
+  const editjob = (job) => {
+    navigate("/Employedashboard", { state: { job } })
+  }
+
+  const managejobfilter = jobs.filter(jobs =>
+    jobs.title.toLowerCase().includes(search.toLowerCase())
   )
 
   return (
@@ -89,30 +106,36 @@ const Managejobs = () => {
           <div className='mt-8 px-1'>
             <div className='flex justify-between mt-5  bg-blue-300 p-4 px-5 rounded-t-2xl'>
               <h1 className='text-xl font-medium'>Job Title</h1>
-              <h1 className='text-xl font-medium sm:pl-20'>Status</h1>
+              <h1 className='text-xl font-medium sm:pl-25'>Status</h1>
               <h1 className='text-xl font-medium sm:pl-15'>Date Posted</h1>
               <h1 className='text-xl font-medium'>Application Recived</h1>
-              <h1 className='text-xl font-medium'>Action</h1>
+              <h1 className='text-xl font-medium sm:pr-5'>Action</h1>
             </div>
 
             <div className="mt-4">
               {managejobfilter.length == 0 ? (
                 <h1 className=" text-3xl text-gray-400 text-center pt-15">No Result</h1>
               ) : (
-                managejobfilter.map((items, idx) => {
+                managejobfilter.map((items) => {
                   return (
                     <>
-                      <div key={idx} className="px-4 py-4 flex gap-5 hover:bg-gray-200 rounded  justify-between text-xm font-medium  items-center">
-                        <div className="flex flex-col">
-                          <h1>{items.employer}</h1>
-                          <h1 className="text-gray-500 text-xs hover:underline">{items.jobtitle}</h1>
-                        </div>
-                        <h1 className="bg-green-400 p-o.5 px-2 rounded-2xl ">{items.status}</h1>
-                        <h1 className=" ">{items.date}</h1>
-                        <h1 className="w-5 text-center">{items.recived}</h1>
+                      <div key={items._id} className="px-4 py-4 flex gap-2 hover:bg-gray-200 rounded  justify-between text-xm font-medium  items-center">
+                        <h1 className='sm:w-30'>{items.title}</h1>
+                        <h1 className="bg-green-400 p-o.5 px-2 rounded-2xl items-center ">{items.status}</h1>
+                        <h1 className='sm:w-20'>{new Date(items.createdAt).toLocaleDateString()}</h1>
+                        <h1 className="w-5 text-center">{items.salary}</h1>
+
                         <div className='flex'>
-                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'>Edit</button>
-                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'>Close</button>
+                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'
+                            onClick={() => editjob(items)}
+                          > Edit
+                          </button>
+                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'
+
+                          >Close</button>
+                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'
+                            onClick={() => deletejobs(items._id)}
+                          >Delete</button>
                         </div>
                       </div>
                     </>
@@ -123,6 +146,8 @@ const Managejobs = () => {
           </div>
         </div>
       </div>
+      <ToastContainer hideProgressBar/>
+
     </div>
   )
 }

@@ -42,7 +42,6 @@ import Termscondition from './Admin/Admindashboard/Termscondition'
 import Privatepolicy from './Admin/Admindashboard/Private-policy'
 
 import PremiumPlans from './Componants/Payment'
-import Error from './Admin/Admindashboard/Error'
 import Dashboardsetting from './Dashbord/DesComponant/Dashboardsetting'
 import Notification from './Dashbord/DesComponant/Notification'
 import { Changepassword } from './Dashbord/DesComponant/Changepassword'
@@ -51,12 +50,17 @@ import Jobfilter from './Dashbord/DesComponant/Jobfilter'
 import Adminlogin from './Pages/Adminlogin'
 import JobApplyForm from './Componants/Applyjob'
 import Jobsview from './Pages/Jobsview'
+import UserSignup from './Pages/Usersignup'
+import PrivateRoute from './Pages/Privateroute'
+import Error from './Componants/Error'
+import PublicRoute from './Pages/Publicroute'
+import Statelength from './Pages/Statelength'
 
 function App() {
 
   const location = useLocation();
 
-  const hideNavbarFooter = ["/Login", "/Dashboard", "/Logout", "/Signup", "/PremiumPlans", "/Error","/Adminlogin","/Defaultnav" ];
+  const hideNavbarFooter = ["/Login", "/Dashboard", "/Logout", "/Signup", "/PremiumPlans", "/Error", "/Adminlogin", "/Defaultnav", "/UserSignup"];
   const shouldHide = hideNavbarFooter.includes(location.pathname);
   const deshpage = location.pathname.startsWith("/Dashboard")
   const employnavhide = location.pathname.startsWith("/Employedashboard")
@@ -75,34 +79,57 @@ function App() {
         <Route path='/navbar' element={<Navbar002 />} />
         <Route path='/Contact' element={<Contact />} />
         <Route path='/Companies' element={<Companies />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/Signup' element={<Signup />} />
+
+
+        <Route path='/Login' element={<PublicRoute>
+          <Login />
+        </PublicRoute>
+        } />
+
+        <Route path='/Signup' element={<PublicRoute>
+          <Signup />
+        </PublicRoute>
+        } />
         <Route path='/PremiumPlans' element={<PremiumPlans />} />
         <Route path='/Error' element={<Error />} />
-        <Route path='/Adminlogin' element={<Adminlogin />} />
-        <Route path='/JobApplyForm' element={<JobApplyForm />} />
-        <Route path='/Jobsview' element={<Jobsview />} />
 
-        <Route path="/Dashboard" element={<Dashboard />}>
+
+        <Route path='/Adminlogin' element={
+          <PublicRoute>
+            <Adminlogin />
+          </PublicRoute>
+        } />
+        <Route path='/Jobsview' element={<Jobsview />} />
+        <Route path='/UserSignup' element={<UserSignup />} />
+        <Route path='/JobApplyForm' element={<JobApplyForm />} />
+
+        <Route path="/Dashboard" element={<PrivateRoute allowedRoles={["jobseeker"]} >
+          <Dashboard />
+        </PrivateRoute>
+        } >
           <Route index element={<Dask />} />
           <Route path="Profile" element={<Profile />} />
-          <Route path="Jobs" element={<Jobs />} /> 
+          <Route path="Jobs" element={<Jobs />} />
           <Route path="Jobfilter" element={<Jobfilter />} />
           <Route path="Application" element={<Application />} />
           <Route path="Savedjobs" element={<Savedjobs />} />
           <Route path="Carrerresources" element={<Carrerresources />} />
           <Route path="Resumebuilder" element={<Resumebuilder />} />
-
           <Route path="Dashboardsetting" element={<Dashboardsetting />} >
             <Route path='Notification' element={<Notification />} />
-            <Route path='Changepassword' element={<Changepassword/>} />
+            <Route path='Changepassword' element={<Changepassword />} />
             <Route path="Deleteacc" element={<Deleteacc />} />
           </Route>
 
+          <Route path='Statelength' element={<Statelength />} />
           <Route path="GetAheadWithPixel" element={<GetAheadWithPixel />} />
+
         </Route>
 
-        <Route path="/Employedashboard" element={<Employedashboard />}>
+        <Route path="/Employedashboard" element={<PrivateRoute allowedRoles={["employ"]}>
+          <Employedashboard />
+        </PrivateRoute>
+        }> 
           <Route index element={<Postjobs />} />
           <Route path="Managejobs" element={<Managejobs />} />
           <Route path="Application" element={<Applica />} />
@@ -112,7 +139,10 @@ function App() {
 
         </Route>
 
-        <Route path="/Admin" element={<Admindashboard />}>
+        <Route path="/Admin" element={<PrivateRoute allowedRoles={["admin"]}>
+          <Admindashboard />
+        </PrivateRoute>
+        }>
           <Route index element={<Dashboards />} />
           <Route path='Manageuser' element={<Manageuser />} >
             <Route index element={<Jobseeker />} />
@@ -131,9 +161,10 @@ function App() {
 
         </Route >
 
-      </Routes>
+      </Routes >
 
-      {!shouldHide && <Footer />}
+      {!shouldHide && <Footer />
+      }
     </>
   )
 }

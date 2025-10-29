@@ -6,7 +6,7 @@ import Dashbord02 from '../../Componants/Dashbord02';
 import { NavLink } from 'react-router-dom';
 
 
-const Dask = () => {
+const Dask = ({totalApplications}) => {
 
   const sliderRef = useRef(null);
 
@@ -46,7 +46,7 @@ const Dask = () => {
 
             <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
               <h1 className="flex gap-4 items-center text-3xl font-bold ">
-                <span className="text-blue-500 "><IoDocumentText /></span>12</h1>
+                <span className="text-blue-500 "><IoDocumentText /></span>{totalApplications}</h1>
               <p className="text-[20px] font-bold text-gray-800 text-center">Application Submission</p>
             </div>
           </NavLink>
@@ -73,14 +73,14 @@ const Dask = () => {
             <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>7</h1>
             <p className='text-[20px] font-bold text-gray-800  text-center'>Status Jobs</p>
           </div>
-          <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100 hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
+          {/* <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100 hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
             <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>21</h1>
             <p className='text-[20px] font-bold text-gray-800  text-center'>Intern</p>
           </div>
           <div className="min-w-[200px] w-[200px] h-[180px] bg-gray-100  hover:bg-gray-100 hover:scale-105 p-10 rounded-2xl text-xl flex flex-col gap-3 items-center justify-center cursor-pointer">
             <h1 className='flex gap-4 items-center text-3xl font-bold '> <span className='text-blue-500'><IoDocumentText /></span>6</h1>
             <p className='text-[20px] font-bold text-gray-800 pl-3  text-center'>Employers</p>
-          </div>
+          </div> */}
         </div>
         <button className='' onClick={slideNext}>
           <IoIosArrowForward className='bg-orange-600 rounded-4xl text-white hover:bg-orange-600 text-2xl cursor-pointer' />

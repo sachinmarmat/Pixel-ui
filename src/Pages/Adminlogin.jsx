@@ -12,7 +12,7 @@ const Adminlogin = () => {
             <div className="backdrop-blur-lg bg-white/10 p-10 rounded-2xl shadow-2xl w-120 border border-white/20">
                 <h2 className="text-3xl font-bold text-center mb-6 text-blue-800">
                     Admin Login
-                </h2>
+                </h2> 
                     <form className="flex flex-col space-y-5">
                         <div>
                             <label className="text-sm text-white/80">Email</label>
@@ -31,7 +31,7 @@ const Adminlogin = () => {
                                 className="w-full mt-1 p-2 rounded-md bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             />
                         </div>
-
+          
                         <button
                             type="submit"
                             className="mt-4 bg-gradient-to-r from-blue-500 to-orange-400 text-white py-2 rounded-md font-semibold hover:opacity-90 transition"
@@ -43,7 +43,7 @@ const Adminlogin = () => {
                             Forgot your password?{" "}
                             <a href="#" className="text-blue-400 hover:underline">
                                 Reset here
-                            </a>
+                            </a>   
                         </p>
                     </form>
                 </div>

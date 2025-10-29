@@ -96,7 +96,8 @@ export default function DashboardCards() {
         <PlanBar label="Requests/day" value={7540} max={10000} color="bg-red-500" />
 
         <button className="mt-auto self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-          Upgrade Plan
+          <a href="/PremiumPlans">  Upgrade Plan
+          </a>
         </button>
       </div>
     </div>

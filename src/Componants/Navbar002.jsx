@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import bgimg from '../assets/bg-img.jpg'
 import { MapPin, Briefcase, IndianRupee } from "lucide-react"; // optional icons (npm i lucide-react)
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { applyFilters, updateTemporary } from '../redux/slice/jobslice';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar002 = () => {
+  const navigate = useNavigate()
 
   // const [findjob, setfindjob] = useState();
 
@@ -18,14 +19,26 @@ const Navbar002 = () => {
 
   const handleChange = (field, value) => {
     dispatch(updateTemporary({ field, value }));
+
   };
 
-  const navigate=useNavigate()
-const handleFindJob = () => {
-  dispatch(applyFilters());
-  navigate("/Jobsview");
-};
 
+  const handleFindJob = () => {
+    dispatch(applyFilters());
+    navigate("/Jobsview");
+  };
+
+  useEffect(() => {
+    const userData = localStorage.getItem('role')
+    if (userData) {
+
+      if (userData === 'admin') { 
+        navigate('/Admin');
+      } else {
+        navigate('/');
+      }
+    }
+  }, [navigate]);
 
   return (
     <div>
@@ -66,12 +79,12 @@ const handleFindJob = () => {
               type="text"
               name='location'
               value={temporary.location}
-        onChange={(e) => handleChange("location", e.target.value)}
+              onChange={(e) => handleChange("location", e.target.value)}
               placeholder="Location"
               className="border border-gray-400 bg-black/30 text-white placeholder:text-gray-300 p-3 pl-4 rounded-xl font-medium w-full sm:w-65 focus:outline-none focus:ring-1 focus:ring-blue-400 outline-hidden"
             />
             <button className="bg-blue-600 p-3 rounded hover:bg-blue-700 cursor-pointer sm:mb-0 mb-8 font-medium px-6 transform transition-transform duration-200 hover:scale-101 w-full sm:w-auto text-white"
-              onClick={ handleFindJob}
+              onClick={handleFindJob}
             >
 
               Find Job

@@ -34,16 +34,19 @@ const Jobfilter = () => {
       <input
         type="range"
         min="10000"
-        max="500000"
+        max="10000000"
         step="1000"
         value={temporary.salary}
         onChange={(e) => handleChange("salary", Number(e.target.value))}
         className="w-full accent-orange-500"
       />
       <div className="flex justify-between text-sm text-gray-600 mb-3">
-        <span>₹100k</span>
-        <span>₹10 Lac</span>
+        <span>₹1L</span>
+        <span>₹20L</span>
       </div>
+      <p className="text-center text-sm text-gray-700 mb-3">
+        Selected: <span className="font-semibold text-orange-600">₹{temporary.salary.toLocaleString()}</span>
+      </p>
 
       <label className="text-sm font-semibold text-gray-700">Job Type</label>
       <div className="grid grid-cols-2 gap-2 mb-3 mt-2">
