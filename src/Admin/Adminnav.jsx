@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { IoLogOutSharp } from "react-icons/io5";
 import { GrResources } from "react-icons/gr";
@@ -8,9 +8,12 @@ import { BsBookmarkCheckFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
+import axios from "axios";
 
 const Adminnav = () => {
     const [open, setOpen] = useState(false);
+    const [adminProfile, setAdminProfile] = useState({});
+
 
     const linkstyle = ({ isActive }) =>
         `flex items-center gap-3 px-4 py-2 rounded-md font-semibold text-[18px] 
@@ -18,6 +21,27 @@ const Adminnav = () => {
             ? "text-white bg-[#FF7200]"
             : " text-white hover:bg-blue-400/50"
         }`;
+
+
+    const token = localStorage.getItem("accessToken");
+
+    //  Fetch Admin Profile
+    const fetchAdminProfile = async () => {
+        try {
+            const res = await axios.get(`http://localhost:8080/api/user/profile`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            const user = res.data.user || {}; 
+            setAdminProfile(user);
+        } catch (error) {
+            console.log("Error fetching admin:", error.response?.data || error.message);
+            toast.error("Failed to fetch admin profile!", { position: "top-right" });
+        }
+    };
+
+    useEffect(() => {
+        fetchAdminProfile();
+    }, []);
 
 
     const handleLogout = () => {
@@ -40,7 +64,7 @@ const Adminnav = () => {
                 <div className="border-b-2 sm:mb-5 border-orange-300/40"></div>
                 <div className="flex justify-between mb-8 px-6 items-center text-center">
                     <div className="flex gap-4"> <img src="https://img.lovepik.com/png/20231125/man-avatar-image-for-profile-child-diverse-guy_693690_wh860.png" alt="" className="w-10 rounded-4xl" />
-                        <h1 className="flex flex-col font-medium ">Admin <span className="text-gray-800 text-xs">HR Manager</span></h1></div>
+                        <h1 className="flex flex-col font-medium ">{adminProfile.name} <span className="text-gray-800 text-xs">{adminProfile.role}</span></h1></div>
                     <TfiMenuAlt className="text-lg" />
 
                 </div>
@@ -67,7 +91,7 @@ const Adminnav = () => {
                     </NavLink>
 
                     <div className="relative ">
-                        <h1
+                        <div
                             className={linkstyle + " cursor-pointer flex items-center text-center"}
                             onClick={() => setOpen(!open)}
                         >
@@ -76,9 +100,9 @@ const Adminnav = () => {
                             <MdOutlineKeyboardArrowDown
                                 className={`text-xl transition-transform  duration-300
                                               ${open ? "rotate-180" : {}}`}
-                            /></h1>
+                            /></div>
                         {open && (
-                            <div className="absolute bg-red-300 p-1 left-0 mt-1 flex flex-col gap-2  shadow rounded">
+                            <div className=" bg-orange-300 p-1 left-0 mt-1 flex flex-col gap-2  shadow rounded">
 
 
                                 <NavLink
@@ -97,11 +121,11 @@ const Adminnav = () => {
                         )}
                     </div>
 
-
+                    {/* <div className="mt-auto"> */}
                     <NavLink to="/" className={linkstyle} onClick={handleLogout}>
                         <GrResources className="text-lg" /> Logout
                     </NavLink>
-
+                    {/* </div> */}
                 </nav>
             </div>
         </div>

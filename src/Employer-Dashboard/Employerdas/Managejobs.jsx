@@ -11,32 +11,49 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Managejobs = () => {
   const navigate = useNavigate()
-
-
+  
+  
   const [search, setsearch] = useState("");
   const [jobs, setjobs] = useState([])
+  
+  const [allapplication, setallapplication] = useState([]);
 
   // user.(localStorage.getjobs(""))
 
   const user = JSON.parse(localStorage.getItem('user'))
   const id = user?.id
 
+  // const jobId=
+
   const token = localStorage.getItem('accessToken')
+  
   const fatchjobs = async () => {
     try {
       const getjobs = await axios.get(`http://localhost:8080/api/jobs/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      });  
+      // const jobId = req.params.id;
 
-      console.log('Jobs fetched:', getjobs.data);
+
+      // console.log('Jobs fetched:', getjobs.data);
       setjobs(getjobs.data.job || []); // THIS LINE FIXED
-
-    } catch (error) {
+      
+      // const jobId = getjobs.data.job?._id;
+    } 
+    catch (error) {
       console.log('error fetching job', error)
     }
   }
+
+
+
+  // const fetchapplinu=async()=>{
+  //   cont res=await axios.get()
+  // }
+
+
 
   useEffect(() => {
     fatchjobs()
@@ -60,9 +77,21 @@ const Managejobs = () => {
     }
   };
 
-  // const closejob = (jobstate) => {
+  const statuschanged = async (id) => {
+    try {
+      const status = await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      toast.success("Status change successfully!");
+      fatchjobs();
+    } catch (error) {
+      console.log("Error status changes:", error.response?.data || error);
+      toast.error("Failed to change status");
 
-  // }
+    }
+  }
 
   const editjob = (job) => {
     navigate("/Employedashboard", { state: { job } })
@@ -71,6 +100,47 @@ const Managejobs = () => {
   const managejobfilter = jobs.filter(jobs =>
     jobs.title.toLowerCase().includes(search.toLowerCase())
   )
+
+
+
+   const application = async (jobId) => {
+    console.log(jobId)
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/api/jobs/${jobId}/applicants`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setallapplication(res.data.applicants || []);
+      console.log(`Applicants for Job ${jobId}:`, res.data.applicants);
+    } catch (error) {
+      console.log("Error fetching applications:", error.response?.data || error.message);
+    }
+  };
+  
+   const getalljobsapply = async (jobId) => {
+    console.log(jobId)
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/api/jobs/${jobId}/getEmployerJobsWithApplicants`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setallapplication(res.data.job || []);
+      console.log(`Applicants for Job ${jobId}:`, res.data.job);
+    } catch (error) {
+      console.log("Error fetching applications:", error.response?.data || error.message);
+    }
+  };
+
+
+  
+  const applicantlength = allapplication.length;
+  console.log("Total applicants:", applicantlength);
+  useEffect(() => {
+    application();
+  }, []);
+
 
   return (
     <div className='bg-blue-200 min-h-screen  '>
@@ -117,23 +187,29 @@ const Managejobs = () => {
                 <h1 className=" text-3xl text-gray-400 text-center pt-15">No Result</h1>
               ) : (
                 managejobfilter.map((items) => {
+                  const isActive = items.status === "active"; // check status
+
                   return (
                     <>
                       <div key={items._id} className="px-4 py-4 flex gap-2 hover:bg-gray-200 rounded  justify-between text-xm font-medium  items-center">
                         <h1 className='sm:w-30'>{items.title}</h1>
-                        <h1 className="bg-green-400 p-o.5 px-2 rounded-2xl items-center ">{items.status}</h1>
+                        <h1 className="bg-green-400 p-1  px-3 rounded-2xl items-center ">{items.status}</h1>
                         <h1 className='sm:w-20'>{new Date(items.createdAt).toLocaleDateString()}</h1>
-                        <h1 className="w-5 text-center">{items.salary}</h1>
+                        <h1 className="w-5 text-center">0</h1>
 
-                        <div className='flex'>
-                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'
+                        <div className='flex gap-0.5 sm:w-45'>
+                          <button className='border bg-blue-500 p-1 px-2 rounded hover:bg-blue-600 cursor-pointer'
                             onClick={() => editjob(items)}
                           > Edit
                           </button>
-                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'
+                          <button className={`border bg-blue-500 p-1 px-2 rounded hover:bg-blue-600 cursor-pointer ${isActive
+                            ? "bg-orange-500 hover:bg-orange-600"
+                            : "bg-green-500 hover:bg-green-600"
+                            }`}
+                            onClick={() => statuschanged(items._id)}
 
-                          >Close</button>
-                          <button className='border bg-blue-500 p-1 rounded hover:bg-blue-600 cursor-pointer'
+                          >          {isActive ? "Closed" : "Activate"}</button>
+                          <button className='border bg-blue-500 p-1 px-2 rounded hover:bg-blue-600 cursor-pointer'
                             onClick={() => deletejobs(items._id)}
                           >Delete</button>
                         </div>
@@ -146,7 +222,7 @@ const Managejobs = () => {
           </div>
         </div>
       </div>
-      <ToastContainer hideProgressBar/>
+      <ToastContainer hideProgressBar />
 
     </div>
   )

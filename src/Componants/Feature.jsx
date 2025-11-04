@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import img from "../assets/img.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaLocationDot } from "react-icons/fa6";
+import { motion } from "framer-motion";
+
 
 
 const Feature = () => {
@@ -10,20 +13,20 @@ const Feature = () => {
 
   const navigate = useNavigate()
 
- const navigatpage = (job) => {
-  const role = localStorage.getItem("role");
+  const navigatpage = (job) => {
+    const role = localStorage.getItem("role");
 
-  if (!role) {
-    // No role = not logged in
-    navigate("/Login");
-  } else if (role === "jobseeker") {
-    // Only jobseeker can apply
-    navigate("/JobApplyForm", { state: { job } });
-  } else {
-    // Other roles (admin/employ) not allowed
-    alert("Only job seekers can apply for jobs.");
-  }
-};
+    if (!role) {
+      // No role = not logged in
+      navigate("/Login");
+    } else if (role === "jobseeker") {
+      // Only jobseeker can apply
+      navigate("/JobApplyForm", { state: { job } });
+    } else {
+      // Other roles (admin/employ) not allowed
+      alert("Only job seekers can apply for jobs.");
+    }
+  };
 
 
   const logos = [
@@ -52,25 +55,6 @@ const Feature = () => {
     logos[(index + 2) % logos.length],
   ];
 
-  // const jobs = [
-  //   {
-  //     title: "Product Designer",
-  //     location: "Luxman Colony, Jaipur, Raj",
-  //     salary: "40k–50k / Monthly",
-  //   },
-  //   {
-  //     title: "Web-Development",
-  //     location: "Luxman Colony, Jaipur, Raj",
-  //     salary: "40k–45k / Monthly",
-  //   },
-  //   {
-  //     title: "Graphix-Designer",
-  //     location: "Luxman Colony, Jaipur, Raj",
-  //     salary: "30k–40k / Monthly",
-  //   },
-  // ];
-
-
   const token = localStorage.getItem('accessToken')
   const Jobdata = async () => {
     try {
@@ -78,7 +62,7 @@ const Feature = () => {
       const res = await axios.get(`http://localhost:8080/api/jobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("Response:", res.data);
+      // console.log("Response:", res.data);
       setalljobs(res.data.jobs?.slice(0, 3) || []);
 
     }
@@ -98,8 +82,15 @@ const Feature = () => {
           <h1 className="text-2xl sm:text-3xl font-semibold">Featured Jobs</h1>
 
           {alljobs.map((job, i) => (
-            <div
+            <motion.div
               key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0px 8px 20px rgba(0,0,0,0.15)",
+              }}
               className="flex flex-col md:flex-row justify-between border shadow-sm hover:shadow-lg transition rounded-lg border-gray-400 p-5 gap-6 md:gap-10"
             >
               {/* Left Side */}
@@ -108,7 +99,8 @@ const Feature = () => {
                   <img src={img} alt="logo" className="w-12" />
                   <h1>{job.title}</h1>
                 </div>
-                <p className="font-medium text-gray-700">{job.location}</p>
+                <p className="font-medium text-gray-700 flex flex-row items-center gap-2  hover:underline"> <FaLocationDot className="text-blue-500 hover:scale-110 cursor-pointer" />
+                  {job.location}</p>
               </div>
 
               {/* Right Side */}
@@ -117,9 +109,9 @@ const Feature = () => {
                   onClick={() => navigatpage(job)}  >
                   Apply Now
                 </button>
-                <h2 className="font-semibold">{job.salary}</h2>
+                <h2 className="font-semibold">${job.salary}/Year</h2>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

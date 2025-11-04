@@ -218,7 +218,7 @@ const Jobsview = () => {
                       <div className="flex justify-between gap-30 mt-2">
                         <div>
                           <p className="text-gray-600">{item.company}</p>
-                          <p className="text-blue-600 font-semibold">{item.salary}/year</p>
+                          <p className="text-blue-600 font-semibold flex flex-row items-center "><IndianRupee size={15}/>{item.salary}/year</p>
                           <p className="flex flex-row items-center gap-2 text-gray-600 mt-1">
                             <IoLocationSharp /> {item.location}
                           </p>

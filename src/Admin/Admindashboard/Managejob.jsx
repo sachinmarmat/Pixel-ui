@@ -35,10 +35,10 @@ const Managejob = () => {
     const togalstatus = async (id) => {
         // console.log(token)
         try {
-            const res = await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
+             await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            console.log("Response:", res);
+            // console.log("Response:", res);
             // toast.success("Status changed!");
             toast.success(res.data.msg || "Status changed!", {
                 position: "top-right",
