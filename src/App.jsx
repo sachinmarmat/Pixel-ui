@@ -55,6 +55,7 @@ import PrivateRoute from './Pages/Privateroute'
 import Error from './Componants/Error'
 import PublicRoute from './Pages/Publicroute'
 import Statelength from './Pages/Statelength'
+import CompanyDetail from './Pages/Companydetail'
 
 function App() {
 
@@ -79,6 +80,7 @@ function App() {
         <Route path='/navbar' element={<Navbar002 />} />
         <Route path='/Contact' element={<Contact />} />
         <Route path='/Companies' element={<Companies />} />
+        <Route path='/company/:id' element={<CompanyDetail />} />
 
 
         <Route path='/Login' element={<PublicRoute>

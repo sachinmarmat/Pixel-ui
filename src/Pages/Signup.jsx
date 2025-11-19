@@ -13,8 +13,9 @@ const Signup = () => {
 
   const [ragistra, setragistra] = useState({
     name: "",
-    email: "", 
+    email: "",
     password: "",
+    address: "",
     role: "employ",
   });
 
@@ -41,7 +42,7 @@ const Signup = () => {
         autoClose: 3000,
         theme: "light",
         transition: Bounce,
-      }); 
+      });
 
       setTimeout(() => navigate("/Login"), 1500);
     } catch (error) {
@@ -146,7 +147,18 @@ const Signup = () => {
               />
             </div>
           </div>
-
+          <div className="flex flex-col gap-2">
+            <label className="font-medium">Address</label>
+            <input
+              placeholder="Company Address"
+              type="text"
+              name="address"
+              required
+              value={ragistra.address}
+              onChange={handleform}
+              className="p-2 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1a70a5]"
+            />
+          </div>
           {/* Terms checkbox */}
           <div className="flex gap-2 items-center mt-2">
             <input
@@ -166,11 +178,10 @@ const Signup = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`p-2 rounded-md text-white font-semibold transition-colors cursor-pointer ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-700"
-            }`}
+            className={`p-2 rounded-md text-white font-semibold transition-colors cursor-pointer ${loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-700"
+              }`}
           >
             {loading ? (
               <div className="flex items-center justify-center gap-2">

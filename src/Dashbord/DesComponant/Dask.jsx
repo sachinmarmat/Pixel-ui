@@ -41,13 +41,13 @@ const Dask = () => {
       const res = await axios.get(`http://localhost:8080/api/jobs/${id}/getSaveJobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // setAllJobs(res.data.jobs || []);
+      setsavejoblength(res.data.jobs || []);
     } catch (error) {
       console.log("Error fetching saved jobs:", error.response?.data || error.message);
     }
   };
 
-  const saveedjoblength = setsavejoblength.length
+  const saveedjoblength = savejoblength.length
 
   useEffect(() => {
     application();

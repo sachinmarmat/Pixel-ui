@@ -79,7 +79,7 @@ const Managejobs = () => {
 
   const statuschanged = async (id) => {
     try {
-      const status = await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
+       await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -119,7 +119,7 @@ const Managejobs = () => {
   };
   
    const getalljobsapply = async (jobId) => {
-    console.log(jobId)
+    console.log(jobId) 
     try {
       const res = await axios.get(
         `http://localhost:8080/api/jobs/${jobId}/getEmployerJobsWithApplicants`,
@@ -132,7 +132,6 @@ const Managejobs = () => {
       console.log("Error fetching applications:", error.response?.data || error.message);
     }
   };
-
 
   
   const applicantlength = allapplication.length;

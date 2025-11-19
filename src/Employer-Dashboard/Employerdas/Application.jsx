@@ -79,7 +79,7 @@ const Application = () => {
               className="w-65 text-xm border outline-none border-gray-400 pl-4 pr-10 py-1.5 rounded-3xl bg-gray-200"
             />
             <BiSearch className="absolute top-4.5 right-1 -translate-y-1/2 text-3xl bg-blue-500 rounded-full p-1 text-white cursor-pointer hover:bg-blue-600" />
-          </div>
+          </div> 
 
           <div className="mt-8 px-1">
             <div className="flex justify-between mt-5 bg-blue-300 p-4 px-5 rounded-t-2xl">

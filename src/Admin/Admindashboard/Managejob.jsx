@@ -35,7 +35,7 @@ const Managejob = () => {
     const togalstatus = async (id) => {
         // console.log(token)
         try {
-             await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
+            const res = await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             // console.log("Response:", res);
@@ -64,13 +64,13 @@ const Managejob = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            toast.success( "Job Deleted", {
+            toast.success("Job Deleted", { 
                 position: "top-right",
-                autoClose: 1000,
+                autoClose: 1000, 
                 theme: "light",
                 transition: Bounce
             });
-            
+
             Jobdata();
         } catch (error) {
             console.log("Error deleting job:", error.response?.data || error);

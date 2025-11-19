@@ -14,7 +14,7 @@ const Aboutchose = () => {
                 <div className='flex text-2xl font-medium text-gray-500 items-center gap-2'><GiConfirmed className='text-orange-700' /><p>User Friendly Platform</p></div>
                 <div className='flex text-2xl font-medium text-gray-500 items-center gap-2'><GiConfirmed className='text-orange-700' /><p>24/7 Support</p></div>
                 <div className='flex text-2xl font-medium text-gray-500 items-center gap-2'><GiConfirmed className='text-orange-700' /><p>Career Resuorces & Guidance</p></div>
-                <div className='mt-3'><button className='bg-orange-600 p-3 rounded hover:bg-orange-700 cursor-pointer font-medium pl-4 pr-4 transform transition-transform duration-200 hover:scale-110'>Explore Job</button></div>
+               <a href='/Jobsview'> <div className='mt-3'><button className='bg-orange-600 p-3 rounded hover:bg-orange-700 cursor-pointer font-medium pl-4 pr-4 transform transition-transform duration-200 hover:scale-110'>Explore Job</button></div></a>
             </div>
             <div className=' mt-15 flex flex-col gap-4'>
                 <h1 className='text-4xl font-bold '>Why choose Us</h1>

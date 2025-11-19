@@ -1,12 +1,41 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaInstagram, FaFacebookF, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 import { MdEmail, MdPhone } from "react-icons/md";
+import { toast, ToastContainer } from "react-toastify";
 
 const Footer = () => {
+
+  const [admindetails, setadmindetails] = useState({})
+
+  const token = localStorage.getItem("accessToken");
+
+  const fetchAdminProfile = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8080/api/admin/getAdmin`)
+      
+      const admin = res.data.admin || {};
+      // console.log(user)
+      setadmindetails(admin);
+
+    } catch (error) {
+      console.log("Error fetching admin:", error.response?.data || error.message);
+      toast.error("Failed to fetch admin profile!", { position: "top-right" });
+    }
+  };
+
+  useEffect(() => {
+    fetchAdminProfile();
+  }, []);
+
+
   return (
     <footer className="bg-blue-600 text-white pt-12 pb-6">
       <div className="max-w-8xl mx-auto px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        
+
         {/* --- Company Info --- */}
         <div>
           <h2 className="text-2xl font-bold mb-4">Pixelgenix IT Solutions</h2>
@@ -39,18 +68,22 @@ const Footer = () => {
           <h3 className="text-xl font-semibold mb-4 border-l-4 border-white pl-2">
             Contact Us
           </h3>
+
           <ul className="space-y-3 text-gray-100">
             <li className="flex items-center gap-3">
-              <MdPhone className="text-xl" /> <span>+91 123-456-7990</span>
+              <MdPhone className="text-xl" /> <span>{admindetails.phone}</span>
             </li>
             <li className="flex items-center gap-3">
-              <MdEmail className="text-xl" />{" "}
-              <span>pixelgenix@gmail.com</span>
+              <MdEmail className="text-xl" />
+              <span>{admindetails.email}</span>
             </li>
-            <li>
-              <p>Indore, Madhya Pradesh, India</p>
+            <li className="flex items-center gap-3">
+              <FaMapMarkerAlt className="text-xl" />
+              <p>{admindetails.address}</p>
             </li>
           </ul>
+
+
         </div>
 
         {/* --- Newsletter --- */}
@@ -90,6 +123,8 @@ const Footer = () => {
           © {new Date().getFullYear()} <span className="font-semibold">Pixelgenix IT Solutions</span>. All Rights Reserved.
         </p>
       </div>
+            <ToastContainer position="top-right" />
+      
     </footer>
   );
 };
