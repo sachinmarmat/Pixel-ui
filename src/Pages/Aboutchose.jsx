@@ -21,7 +21,7 @@ const Aboutchose = () => {
                 <div className=' flex gap-7 mt-5 '> 
                     <div className=''>
                         <div className='flex gap-4 items-center text-3xl transform transition-transform duration-200 hover:scale-110 cursor-pointer'> <BsPersonCircle className='text-blue-800' />
-                            <h1 className='text-3xl font-bold'>20k+</h1></div>
+                            <h1 className='text-3xl font-bold'>50k+</h1></div>
                         <p className='text-gray-700 font-medium mt-1 '>Job Seekers connected</p>
                     </div>
                     <div className='cursor-pointer'>
@@ -31,10 +31,10 @@ const Aboutchose = () => {
                 </div>
                 <div>
                     <div className='flex gap-4 items-center text-3xl transform transition-transform duration-200 hover:scale-110 cursor-pointer'> <FaBuilding className='text-blue-800' />
-                        <h1 className='text-3xl font-bold'>50k+</h1></div>
+                        <h1 className='text-3xl font-bold'>10k+</h1></div>
                     <p className='text-gray-700 font-medium mt-1 '>Employers onborded</p></div>
             </div>
-        </div >
+        </div > 
     )
 }
 

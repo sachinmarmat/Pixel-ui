@@ -9,7 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Footer = () => {
 
-  const [admindetails, setadmindetails] = useState({})
+  const [admindetails, setadmindetails] = useState({}) 
 
   const token = localStorage.getItem("accessToken");
 
@@ -59,7 +59,7 @@ const Footer = () => {
             <li><a href="/Companies" className="hover:text-yellow-300 transition">Companies</a></li>
             <li><a href="/Aboutus" className="hover:text-yellow-300 transition">About Us</a></li>
             <li><a href="/Contact" className="hover:text-yellow-300 transition">Contact</a></li>
-            <li><a href="/" className="hover:text-yellow-300 transition">Privacy Policy</a></li>
+            <li><a href="/" className="hover:text-yellow-300 transition">Privacy Policy</a></li> 
           </ul>
         </div>
 
@@ -104,10 +104,10 @@ const Footer = () => {
               type="submit"
               className="bg-orange-500 hover:bg-orange-600 text-black px-5 py-2 rounded-md font-semibold transition"
             >
-              Subscribe
+             <a href="/PremiumPlans">Subscribe</a> 
             </button>
           </form>
-        </div>
+        </div>   
       </div>
 
       {/* --- Social Media --- */}

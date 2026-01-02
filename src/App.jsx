@@ -107,7 +107,7 @@ function App() {
 
         <Route path="/Dashboard" element={<PrivateRoute allowedRoles={["jobseeker"]} >
           <Dashboard />
-        </PrivateRoute>
+        </PrivateRoute> 
         } >
           <Route index element={<Dask />} />
           <Route path="Profile" element={<Profile />} />
