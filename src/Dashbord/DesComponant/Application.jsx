@@ -12,7 +12,7 @@ const Application = ({ setTotalApplications }) => { // ✅ clearer prop name
 
   const application = async () => {
     try {
-      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/jobs/${id}/getapplyjobs`, {
+      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com/api/jobs/${id}/getapplyjobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setallapplication(res.data.job || []);

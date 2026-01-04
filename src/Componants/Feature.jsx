@@ -69,7 +69,7 @@ const Feature = () => {
   const token = localStorage.getItem("accessToken");
   const Jobdata = async () => {
     try {
-      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/jobs`, {
+      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com/api/jobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAllJobs(res.data.jobs?.slice(0, 3) || []);

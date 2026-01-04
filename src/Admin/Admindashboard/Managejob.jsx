@@ -12,7 +12,7 @@ const Managejob = () => {
 
     const Jobdata = async () => {
         try {
-            const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/admin/getAllJobs`, {
+            const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com/api/admin/getAllJobs`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             // console.log("Response:", res.data);
@@ -35,7 +35,7 @@ const Managejob = () => {
     const togalstatus = async (id) => {
         // console.log(token)
         try {
-            const res = await axios.put(`https://job-portal-backend-2q8i.onrender.com//api/jobs/${id}/togglestatus`, {}, {
+            const res = await axios.put(`https://job-portal-backend-2q8i.onrender.com/api/jobs/${id}/togglestatus`, {}, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             // console.log("Response:", res);
@@ -59,7 +59,7 @@ const Managejob = () => {
         if (!window.confirm("Do you really want to delete this job?")) return;
 
         try {
-            await axios.delete(`https://job-portal-backend-2q8i.onrender.com//api/admin/job/${id}`, {
+            await axios.delete(`https://job-portal-backend-2q8i.onrender.com/api/admin/job/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

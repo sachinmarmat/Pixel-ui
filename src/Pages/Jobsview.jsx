@@ -107,7 +107,7 @@ const Jobsview = () => {
   const Jobdata = async () => {
     try {
       // console.log("Fetching jobs for id:", "token:", token);
-      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/jobs`, {
+      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com/api/jobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // console.log("Response:", res.data);

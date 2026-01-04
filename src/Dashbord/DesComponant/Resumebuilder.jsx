@@ -57,7 +57,7 @@ export default function ResumeBuilder() {
   const increaseResumeCount = async () => {
     try {
       const res = await axios.post(
-        "https://job-portal-backend-2q8i.onrender.com//api/premium/resumecounte",
+        "https://job-portal-backend-2q8i.onrender.com/api/premium/resumecounte",
         {},
         {
           headers: {
@@ -74,7 +74,7 @@ export default function ResumeBuilder() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("https://job-portal-backend-2q8i.onrender.com//api/user/profile", {
+        const res = await axios.get("https://job-portal-backend-2q8i.onrender.com/api/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setusers(res.data.user || res.data);

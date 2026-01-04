@@ -75,7 +75,7 @@ export default function Profile() {
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://job-portal-backend-2q8i.onrender.com//api/user/profile", {
+      const res = await axios.get("https://job-portal-backend-2q8i.onrender.com/api/user/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = res.data.user || res.data || {};
@@ -110,7 +110,7 @@ export default function Profile() {
 
   const fetchPremium = async () => {
     try {
-      const res = await axios.get("https://job-portal-backend-2q8i.onrender.com//api/premium/status", {
+      const res = await axios.get("https://job-portal-backend-2q8i.onrender.com/api/premium/status", {
         headers: { Authorization: `Bearer ${token}` },
       });
       // expected response shape: { isPremium: true/false, plan: 'Gold', expiry: '2025-12-31' }
@@ -145,7 +145,7 @@ export default function Profile() {
         languages: form.languages.split(",").map((s) => s.trim()).filter(Boolean),
       };
 
-      const res = await axios.put("https://job-portal-backend-2q8i.onrender.com//api/user/profile", payload, {
+      const res = await axios.put("https://job-portal-backend-2q8i.onrender.com/api/user/profile", payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -165,7 +165,7 @@ export default function Profile() {
   const handleCancelPremium = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("https://job-portal-backend-2q8i.onrender.com//api/premium/cancel", {}, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.post("https://job-portal-backend-2q8i.onrender.com/api/premium/cancel", {}, { headers: { Authorization: `Bearer ${token}` } });
       toast.success(res.data.msg || "Premium canceled");
       setShowCancelConfirm(false);
       // update ui state

@@ -66,7 +66,7 @@ const JobApplyForm = () => {
 
     try {
       const res = await axios.post(
-        `https://job-portal-backend-2q8i.onrender.com//api/jobs/${jobId}/apply`,
+        `https://job-portal-backend-2q8i.onrender.com/api/jobs/${jobId}/apply`,
         data,
         {
           headers: {

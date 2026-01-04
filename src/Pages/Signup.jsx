@@ -6,7 +6,7 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-const backendUrl = "https://job-portal-backend-2q8i.onrender.com/";
+const backendUrl = "https://job-portal-backend-2q8i.onrender.com";
 
 const Signup = () => {
   const navigate = useNavigate();

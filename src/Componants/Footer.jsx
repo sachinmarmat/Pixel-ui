@@ -15,7 +15,7 @@ const Footer = () => {
 
   const fetchAdminProfile = async () => {
     try {
-      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/admin/getAdmin`)
+      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com/api/admin/getAdmin`)
       
       const admin = res.data.admin || {};
       // console.log(user)

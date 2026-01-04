@@ -29,7 +29,7 @@ const Companies = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/admin/getemploye`, {
+      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com/api/admin/getemploye`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // Ensure the data structure is handled safely

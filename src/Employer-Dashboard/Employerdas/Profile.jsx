@@ -32,7 +32,7 @@ const Profile = () => {
   // Fetch User Profile
   const fetchProfile = async () => {
     try {
-      const res = await axios.get("https://job-portal-backend-2q8i.onrender.com//api/user/profile", {
+      const res = await axios.get("https://job-portal-backend-2q8i.onrender.com/api/user/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = res.data.user || {};
@@ -78,7 +78,7 @@ const Profile = () => {
           : [],
       };   
 
-      const res = await axios.put("https://job-portal-backend-2q8i.onrender.com//api/user/profile", payload, {
+      const res = await axios.put("https://job-portal-backend-2q8i.onrender.com/api/user/profile", payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(res)

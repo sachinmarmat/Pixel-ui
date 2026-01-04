@@ -72,7 +72,7 @@ export default function PremiumPlans() {
     try {
       // ✅ 1. Create order from backend
       const { data } = await axios.post(
-        "https://job-portal-backend-2q8i.onrender.com//api/premium/createprime",
+        "https://job-portal-backend-2q8i.onrender.com/api/premium/createprime",
         { plan: planId, duration, role },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -92,7 +92,7 @@ export default function PremiumPlans() {
           try {
             // ✅ 3. Verify payment
             const verifyRes = await axios.post(
-              "https://job-portal-backend-2q8i.onrender.com//api/premium/verify",
+              "https://job-portal-backend-2q8i.onrender.com/api/premium/verify",
               {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
