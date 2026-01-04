@@ -13,7 +13,7 @@ const CompanyDetail = () => {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/admin/company/${id}`);
+        const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/admin/company/${id}`);
         setCompany(res.data.company);
       } catch (error) {
         console.error("Error fetching company details:", error);

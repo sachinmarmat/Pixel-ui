@@ -38,4 +38,4 @@ const Aboutchose = () => {
     )
 }
 
-export default Aboutchose
+export default Aboutchose 

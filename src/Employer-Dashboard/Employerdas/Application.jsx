@@ -17,7 +17,7 @@ const Application = () => {
     // console.log('hello')
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/jobs/${employerId}/getEmployerJobsWithApplicants`,
+        `https://job-portal-backend-2q8i.onrender.com//api/jobs/${employerId}/getEmployerJobsWithApplicants`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

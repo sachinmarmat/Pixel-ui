@@ -20,7 +20,7 @@ const AdminProfile = () => {
   // 🟢 Fetch Admin Profile
   const fetchAdminProfile = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/user/profile`, {
+      const res = await axios.get(`https://job-portal-backend-2q8i.onrender.com//api/user/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = res.data.user || {};
@@ -52,7 +52,7 @@ const AdminProfile = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/user/profile`,
+        `https://job-portal-backend-2q8i.onrender.com//api/user/profile`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
