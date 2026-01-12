@@ -12,7 +12,7 @@ const Dashboards = () => {
     //  Fetch employer count
     const employedata = async () => {
         try {
-            const res = await axios.get(`http://localhost:8080/api/admin/getemploye`, {
+            const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/admin/getemploye`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const count = res.data.employe?.length || 0;
@@ -25,7 +25,7 @@ const Dashboards = () => {
     const userdata = async () => {
         try {
             const res = await axios.get(
-                `http://localhost:8080/api/admin/getjobseeker`,
+                `https://pixel-job-portal-backend.onrender.com/api/admin/getjobseeker`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -38,7 +38,7 @@ const Dashboards = () => {
     };
     const Jobdata = async () => {
         try {
-            const res = await axios.get(`http://localhost:8080/api/admin/getAllJobs`, {
+            const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/admin/getAllJobs`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             // console.log("Response:", res.data);

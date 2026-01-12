@@ -29,7 +29,7 @@ const Companies = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`http://localhost:8080/api/admin/getemploye`, {
+      const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/admin/getemploye`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // Ensure the data structure is handled safely

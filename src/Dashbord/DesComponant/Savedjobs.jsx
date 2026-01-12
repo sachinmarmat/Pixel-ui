@@ -15,7 +15,7 @@ const Savedjobs = () => {
   //  Fetch Saved Jobs
   const fetchSavedJobs = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/jobs/${id}/getSaveJobs`, {
+      const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/jobs/${id}/getSaveJobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAllJobs(res.data.jobs || []);
@@ -27,7 +27,7 @@ const Savedjobs = () => {
   // ✅ Remove Saved Job
   const removeSavedJob = async (jobId) => {
     try {
-     const res= await axios.delete(`http://localhost:8080/api/jobs/${jobId}/removesavejob`, {
+     const res= await axios.delete(`https://pixel-job-portal-backend.onrender.com/api/jobs/${jobId}/removesavejob`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(res)

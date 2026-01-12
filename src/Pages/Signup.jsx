@@ -6,7 +6,7 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-const backendUrl = "http://localhost:8080";
+const backendUrl = "https://pixel-job-portal-backend.onrender.com";
 
 const Signup = () => {
   const navigate = useNavigate();

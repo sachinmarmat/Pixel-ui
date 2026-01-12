@@ -15,7 +15,7 @@ const Footer = () => {
 
   const fetchAdminProfile = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/admin/getAdmin`)
+      const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/admin/getAdmin`)
       
       const admin = res.data.admin || {};
       // console.log(user)

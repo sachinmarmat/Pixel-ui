@@ -39,7 +39,7 @@ const UserSignup = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8080/api/auth/user/register", {
+      const res = await axios.post("https://pixel-job-portal-backend.onrender.com/api/auth/user/register", {
         name,
         email,
         password,

@@ -28,7 +28,7 @@ const Adminnav = () => {
     //  Fetch Admin Profile
     const fetchAdminProfile = async () => {
         try {
-            const res = await axios.get(`http://localhost:8080/api/user/profile`, {
+            const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/user/profile`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const user = res.data.user || {}; 

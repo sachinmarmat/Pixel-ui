@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://pixel-job-portal-backend.onrender.com/api",
 });
 
 // Add access token to every request
@@ -30,7 +30,7 @@ API.interceptors.response.use(
         const refreshToken = localStorage.getItem("refreshToken");
 
         // Request a new access token
-        const { data } = await axios.post("http://localhost:8080/api/auth/refresh", {
+        const { data } = await axios.post("https://pixel-job-portal-backend.onrender.com/api/auth/refresh", {
           refreshToken,
         });
 

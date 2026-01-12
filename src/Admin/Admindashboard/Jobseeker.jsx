@@ -10,7 +10,7 @@ const Jobseeker = () => {
     const userdata = async () => {
         try {
             const res = await axios.get(
-                `http://localhost:8080/api/admin/getjobseeker`,
+                `https://pixel-job-portal-backend.onrender.com/api/admin/getjobseeker`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -32,7 +32,7 @@ const Jobseeker = () => {
             if (currentStatus === "active") {
                 // Suspend user
                 res = await axios.put(
-                    `http://localhost:8080/api/admin/user/${id}/suspenduser`,
+                    `https://pixel-job-portal-backend.onrender.com/api/admin/user/${id}/suspenduser`,
                     {},
                     {
                         headers: { Authorization: `Bearer ${token}` },
@@ -41,7 +41,7 @@ const Jobseeker = () => {
             } else {
                 // Reactivate user
                 res = await axios.put(
-                    `http://localhost:8080/api/admin/user/${id}/reactivateuser`,
+                    `https://pixel-job-portal-backend.onrender.com/api/admin/user/${id}/reactivateuser`,
                     {},
                     {
                         headers: { Authorization: `Bearer ${token}` },
@@ -67,7 +67,7 @@ const Jobseeker = () => {
         if (!window.confirm("Do you really want to delete this user?")) return;
 
         try {
-            await axios.delete(`http://localhost:8080/api/admin/user/${id}`, {
+            await axios.delete(`https://pixel-job-portal-backend.onrender.com/api/admin/user/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

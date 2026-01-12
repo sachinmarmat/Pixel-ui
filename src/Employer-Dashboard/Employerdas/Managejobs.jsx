@@ -29,7 +29,7 @@ const Managejobs = () => {
   
   const fatchjobs = async () => {
     try {
-      const getjobs = await axios.get(`http://localhost:8080/api/jobs/${id}`, {
+      const getjobs = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/jobs/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -64,7 +64,7 @@ const Managejobs = () => {
     if (!window.confirm("Do you really want to delete this job?")) return;
 
     try {
-      await axios.delete(`http://localhost:8080/api/jobs/${id}`, {
+      await axios.delete(`https://pixel-job-portal-backend.onrender.com/api/jobs/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -79,7 +79,7 @@ const Managejobs = () => {
 
   const statuschanged = async (id) => {
     try {
-       await axios.put(`http://localhost:8080/api/jobs/${id}/togglestatus`, {}, {
+       await axios.put(`https://pixel-job-portal-backend.onrender.com/api/jobs/${id}/togglestatus`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -107,7 +107,7 @@ const Managejobs = () => {
     console.log(jobId)
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/jobs/${jobId}/applicants`,
+        `https://pixel-job-portal-backend.onrender.com/api/jobs/${jobId}/applicants`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -122,7 +122,7 @@ const Managejobs = () => {
     console.log(jobId) 
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/jobs/${jobId}/getEmployerJobsWithApplicants`,
+        `https://pixel-job-portal-backend.onrender.com/api/jobs/${jobId}/getEmployerJobsWithApplicants`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

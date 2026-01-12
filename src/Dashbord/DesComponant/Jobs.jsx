@@ -19,7 +19,7 @@ const Jobs = () => {
   // ✅ Fetch all jobs
   const fetchAllJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/jobs", {
+      const res = await axios.get("https://pixel-job-portal-backend.onrender.com/api/jobs", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAllJobs(res.data.jobs || []);
@@ -31,7 +31,7 @@ const Jobs = () => {
   // ✅ Fetch saved jobs (for bookmark persistence)
   const fetchSavedJobs = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/jobs/${id}/getSaveJobs`, {
+      const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/jobs/${id}/getSaveJobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -47,7 +47,7 @@ const Jobs = () => {
   const toggleBookmark = async (jobId) => {
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/jobs/${jobId}/savejob`,
+        `https://pixel-job-portal-backend.onrender.com/api/jobs/${jobId}/savejob`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

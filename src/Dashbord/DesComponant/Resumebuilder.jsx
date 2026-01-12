@@ -57,7 +57,7 @@ export default function ResumeBuilder() {
   const increaseResumeCount = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/premium/resumecounte",
+        "https://pixel-job-portal-backend.onrender.com/api/premium/resumecounte",
         {},
         {
           headers: {
@@ -74,7 +74,7 @@ export default function ResumeBuilder() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/api/user/profile", {
+        const res = await axios.get("https://pixel-job-portal-backend.onrender.com/api/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setusers(res.data.user || res.data);

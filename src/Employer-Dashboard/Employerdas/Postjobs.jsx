@@ -56,7 +56,7 @@ const Postjobs = () => {
       if (isEdit) {
         // Update existing job
         res = await axios.put(
-          `http://localhost:8080/api/jobs/${editJob._id}`,
+          `https://pixel-job-portal-backend.onrender.com/api/jobs/${editJob._id}`,
           addjob,
           {
             headers: {
@@ -66,7 +66,7 @@ const Postjobs = () => {
         );
       } else {
         // Create new job
-        res = await axios.post("http://localhost:8080/api/jobs/create", addjob, {
+        res = await axios.post("https://pixel-job-portal-backend.onrender.com/api/jobs/create", addjob, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

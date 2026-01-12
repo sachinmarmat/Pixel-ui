@@ -28,7 +28,7 @@ const Dask = () => {
   const id = user.id;
   const application = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/jobs/${id}/getapplyjobs`, {
+      const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/jobs/${id}/getapplyjobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setallapplication(res.data.job || []);
@@ -38,7 +38,7 @@ const Dask = () => {
   };
   const fetchSavedJobs = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/jobs/${id}/getSaveJobs`, {
+      const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/jobs/${id}/getSaveJobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setsavejoblength(res.data.jobs || []);

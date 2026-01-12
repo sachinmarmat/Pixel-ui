@@ -66,7 +66,7 @@ const JobApplyForm = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/jobs/${jobId}/apply`,
+        `https://pixel-job-portal-backend.onrender.com/api/jobs/${jobId}/apply`,
         data,
         {
           headers: {

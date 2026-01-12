@@ -19,7 +19,7 @@ const Admindashboard = () => {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/inform/getmassage", {
+      const res = await axios.get("https://pixel-job-portal-backend.onrender.com/api/inform/getmassage", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -35,7 +35,7 @@ const Admindashboard = () => {
   };
   const handleDeleteMessage = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8080/api/inform/${id}/deletemassage`, {
+      const res = await axios.delete(`https://pixel-job-portal-backend.onrender.com/api/inform/${id}/deletemassage`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

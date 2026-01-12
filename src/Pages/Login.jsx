@@ -26,7 +26,7 @@ const Login = () => {
   const handleReverify = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8080/api/auth/resend-verification", {
+      const res = await axios.post("https://pixel-job-portal-backend.onrender.com/api/auth/resend-verification", {
         email: loginform.email,
       });
       toast.success(res.data.msg || "Verification email sent!", {
@@ -63,7 +63,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post(`http://localhost:8080/api/auth/user/login`, loginform);
+      const res = await axios.post(`https://pixel-job-portal-backend.onrender.com/api/auth/user/login`, loginform);
       const user = res.data.user;
 
       if (user.status && user.status.toLowerCase() === "suspended") {
@@ -147,7 +147,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const res = await axios.put(`http://localhost:8080/api/user/profile`, {
+      const res = await axios.put(`https://pixel-job-portal-backend.onrender.com/api/user/profile`, {
         email: loginform.email,
         newPassword,
       });

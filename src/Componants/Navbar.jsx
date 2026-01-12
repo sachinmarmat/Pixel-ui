@@ -58,7 +58,7 @@ const Navbar = () => {
 
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/premium/status`,
+        `https://pixel-job-portal-backend.onrender.com/api/premium/status`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

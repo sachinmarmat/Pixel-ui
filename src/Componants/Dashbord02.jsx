@@ -16,7 +16,7 @@ const Dashbord02 = () => {
 
   const Jobdata = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/jobs`, {
+      const res = await axios.get(`https://pixel-job-portal-backend.onrender.com/api/jobs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAllJobs(res.data.jobs?.slice(0, 3) || []);
