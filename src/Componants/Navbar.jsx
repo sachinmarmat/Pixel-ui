@@ -276,7 +276,7 @@ const Navbar = () => {
               {isOpen ? (
                 <X size={30} className="text-blue-400 transform rotate-90" />
               ) : (
-                <Menu size={30} className="text-white" />
+                <Menu size={30} className="text-blue-700" />
               )}
             </button>
           </div>

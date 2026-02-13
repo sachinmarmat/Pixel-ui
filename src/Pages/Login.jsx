@@ -66,7 +66,7 @@ const Login = () => {
       const res = await axios.post(`https://pixel-job-portal-backend.onrender.com/api/auth/user/login`, loginform);
       const user = res.data.user;
 
-      if (user.status && user.status.toLowerCase() === "suspended") {
+      if (user.status && user.status.toLowerCase() === "suspended") { 
         toast.error(res.data.msg);
         setLoading(false);
         return;
@@ -75,7 +75,7 @@ const Login = () => {
       localStorage.setItem("accessToken", res.data.accessToken);
       localStorage.setItem("refreshToken", res.data.refreshToken);
       localStorage.setItem("role", user.role);
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user)); 
 
       toast.success(res.data.msg, {
         position: "top-center",
@@ -150,7 +150,7 @@ const Login = () => {
       const res = await axios.put(`https://pixel-job-portal-backend.onrender.com/api/user/profile`, {
         email: loginform.email,
         newPassword,
-      });
+      }); 
 
       toast.success(res.data.msg || "Password updated successfully!", {
         position: "top-center",

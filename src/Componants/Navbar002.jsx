@@ -15,7 +15,7 @@ const Navbar002 = () => {
   };
 
   const handleFindJob = () => {
-    dispatch(applyFilters());
+    dispatch(applyFilters()); 
     navigate("/Jobsview");
   };
 
@@ -31,25 +31,25 @@ const Navbar002 = () => {
   }, [navigate]);
 
   return (
-    <div className="relative min-h-[40rem] sm:min-h-[45rem] overflow-hidden">
+    <div className="relative min-h-[42rem] sm:min-h-[45rem] overflow-hidden">
       {/* Background Image with Gradient Overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${bgimg})` }}
+  className="absolute inset-0 bg-cover bg-[-360px_center] sm:bg-center"
+          style={{ backgroundImage: `url(${bgimg})` }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/20"></div>
 
       {/* Animated Content */}
       <div className="relative z-10 max-w-screen-xl mx-auto px-6 pt-48 sm:pt-60 lg:pt-72 text-center sm:text-left">
-        {/* Title */}
+        {/* Title */}  
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight text-white drop-shadow-lg"
+          className="text-5xl sm:text-6xl pr-5 md:text-7xl font-bold leading-tight text-white drop-shadow-lg"
         >
           Find the{" "}
-          <span className="bg-blue-600 rounded-4xl">
+          <span className="bg-blue-600 rounded-4xl"> 
             job
           </span>{" "}
           you love

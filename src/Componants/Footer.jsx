@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaInstagram, FaFacebookF, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 import { MdEmail, MdPhone } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 const Footer = () => {
@@ -31,6 +32,13 @@ const Footer = () => {
     fetchAdminProfile();
   }, []);
 
+
+const navigate = useNavigate(); 
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Stop page refresh
+    navigate('/PremiumPlans');
+  };
 
   return (
     <footer className="bg-blue-600 text-white pt-12 pb-6">
@@ -94,9 +102,10 @@ const Footer = () => {
           <p className="text-gray-100 mb-3">
             Subscribe for job updates and tech insights.
           </p>
-          <form className="flex flex-col sm:flex-row items-center gap-2">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-2">
             <input
               type="email"
+              required
               placeholder="Your Email"
               className="w-full sm:flex-1 px-4 py-2 bg-gray-100/40 rounded-md text-gray-800 outline-none"
             />
@@ -104,7 +113,7 @@ const Footer = () => {
               type="submit"
               className="bg-orange-500 hover:bg-orange-600 text-black px-5 py-2 rounded-md font-semibold transition"
             >
-             <a href="/PremiumPlans">Subscribe</a> 
+             Subscribe
             </button>
           </form>
         </div>   

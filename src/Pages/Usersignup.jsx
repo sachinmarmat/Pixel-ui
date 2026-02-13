@@ -45,7 +45,8 @@ const UserSignup = () => {
         password,
         role,
         address,
-      });
+      }
+);
 
       toast.success(res.data.message || "Signup successful!", {
         position: "top-center",
